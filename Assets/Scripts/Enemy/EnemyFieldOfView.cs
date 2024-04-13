@@ -1,26 +1,27 @@
 using UnityEngine;
 
 [ExecuteInEditMode]
+[RequireComponent(typeof(Enemy))]
 public class EnemyFieldOfView : FieldOfView
 {
-    private bool _initialDrawFieldOfView;
+    private Enemy _enemy;
 
     protected override void Start()
     {
         base.Start();
-        _initialDrawFieldOfView = _drawFieldOfView;
+        _enemy = GetComponent<Enemy>();
     }
 
     protected override void Update()
     {
         base.Update();
 
-        //GameObject target = VisibleTargets[0];
-        //_enemyCombatScript.SetTarget(target);
-
-        if (_initialDrawFieldOfView)
+        if (VisibleTargets.Count > 0)
         {
-            //_drawFieldOfView = _enemyCombatScript.Target == null && _statsScript.Health > 0;
+            if (_enemy.CurrentState == Enemy.EnemyState.Wandering)
+            {
+                _enemy.StartChasing();
+            }
         }
     }
 }
