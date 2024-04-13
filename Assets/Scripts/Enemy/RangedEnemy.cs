@@ -4,7 +4,6 @@ public class RangedEnemy : Enemy
 {
     [SerializeField] private GameObject _projectilePrefab;
     [SerializeField] private Transform _projectileSpawn;
-    [SerializeField] private float _projectileCooldown = 4f;
 
     private float _elapsedTimeSinceLastProjectile;
 
@@ -14,9 +13,10 @@ public class RangedEnemy : Enemy
 
         if (IsAtStoppingDistanceFromPlayer())
         {
+            _animator.SetBool("IsAttacking", true);
             _elapsedTimeSinceLastProjectile += Time.deltaTime;
 
-            if (_elapsedTimeSinceLastProjectile >= _projectileCooldown)
+            if (_elapsedTimeSinceLastProjectile >= _animator.GetCurrentAnimatorStateInfo(0).length)
             {
                 ShootProjectileAtPlayer();
                 _elapsedTimeSinceLastProjectile = 0;
@@ -25,7 +25,12 @@ public class RangedEnemy : Enemy
         else
         {
             _elapsedTimeSinceLastProjectile = 0;
-            StartChasing();
+
+            if (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
+            {
+                _animator.SetBool("IsAttacking", false);
+                StartChasing();
+            }
         }
     }
 

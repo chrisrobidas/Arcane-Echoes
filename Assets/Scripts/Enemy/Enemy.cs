@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent))]
 public abstract class Enemy : MonoBehaviour
 {
     public enum EnemyState
@@ -18,12 +17,15 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] private float _speed = 3.5f;
     [SerializeField] private float _stoppingDistanceFromPlayer = 3f;
 
+    protected Animator _animator;
+
     private int _targetWaypointIndex;
     private NavMeshAgent _agent;
     private float _elapsedTimeSinceWaypointIsReached;
 
     public void Start()
     {
+        _animator = GetComponent<Animator>();
         _agent = GetComponent<NavMeshAgent>();
         _agent.speed = _speed;
         _targetWaypointIndex = _initialWaypointIndex;
@@ -32,6 +34,8 @@ public abstract class Enemy : MonoBehaviour
 
     public void Update()
     {
+        _animator.SetFloat("Velocity", _agent.velocity.magnitude);
+
         switch (CurrentState)
         {
             case EnemyState.Wandering:
@@ -80,7 +84,7 @@ public abstract class Enemy : MonoBehaviour
 
     private void Wander()
     {
-        _agent.stoppingDistance = 0f;
+        _agent.stoppingDistance = 0.1f;
         Waypoint targetWaypoint = _waypointPath.GetWaypoint(_targetWaypointIndex).GetComponent<Waypoint>();
         _agent.SetDestination(targetWaypoint.transform.position);
 

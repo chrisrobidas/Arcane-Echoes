@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class MeleeEnemy : Enemy
 {
-    [SerializeField] private float _timeBeforeAttack = 1.5f;
-
     private float _elapsedTimeInAttackState;
 
     public override void Attack()
@@ -12,17 +10,22 @@ public class MeleeEnemy : Enemy
 
         if (IsAtStoppingDistanceFromPlayer())
         {
+            _animator.SetBool("IsAttacking", true);
             _elapsedTimeInAttackState += Time.deltaTime;
 
-            if (_elapsedTimeInAttackState >= _timeBeforeAttack)
+            if (_elapsedTimeInAttackState >= _animator.GetCurrentAnimatorStateInfo(0).length)
             {
                 GameManager.Instance.GameOver();
             }
         }
         else
         {
-            _elapsedTimeInAttackState = 0;
-            StartChasing();
+            if (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
+            {
+                _elapsedTimeInAttackState = 0;
+                _animator.SetBool("IsAttacking", false);
+                StartChasing();
+            }
         }
     }
 }
