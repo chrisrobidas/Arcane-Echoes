@@ -132,6 +132,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "PlayerSummoning",
+            "id": "b0cc0ce3-edeb-4122-9aae-ca874a9a1537",
+            "actions": [
+                {
+                    "name": "Summon",
+                    "type": "Button",
+                    "id": "3996596c-ddd0-4ad3-bda1-dd9b202f852d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Project",
+                    "type": "Button",
+                    "id": "e8487c8d-d842-4ec0-8b0a-a49ab49a3f13",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "cf07c5c4-e5e6-4af9-a0c6-c26cc8d1610a",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Summon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f8d7f1f8-0378-4c24-b054-2fcd9f5af2ea",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Project",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

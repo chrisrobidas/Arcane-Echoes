@@ -154,6 +154,54 @@ public partial class @PlayerInputsAction: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""PlayerSummoning"",
+            ""id"": ""b0cc0ce3-edeb-4122-9aae-ca874a9a1537"",
+            ""actions"": [
+                {
+                    ""name"": ""Summon"",
+                    ""type"": ""Button"",
+                    ""id"": ""3996596c-ddd0-4ad3-bda1-dd9b202f852d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Project"",
+                    ""type"": ""Button"",
+                    ""id"": ""e8487c8d-d842-4ec0-8b0a-a49ab49a3f13"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""cf07c5c4-e5e6-4af9-a0c6-c26cc8d1610a"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Summon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f8d7f1f8-0378-4c24-b054-2fcd9f5af2ea"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Project"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -164,6 +212,10 @@ public partial class @PlayerInputsAction: IInputActionCollection2, IDisposable
         m_PlayerMovement_Sprint = m_PlayerMovement.FindAction("Sprint", throwIfNotFound: true);
         m_PlayerMovement_Crouch = m_PlayerMovement.FindAction("Crouch", throwIfNotFound: true);
         m_PlayerMovement_Jump = m_PlayerMovement.FindAction("Jump", throwIfNotFound: true);
+        // PlayerSummoning
+        m_PlayerSummoning = asset.FindActionMap("PlayerSummoning", throwIfNotFound: true);
+        m_PlayerSummoning_Summon = m_PlayerSummoning.FindAction("Summon", throwIfNotFound: true);
+        m_PlayerSummoning_Project = m_PlayerSummoning.FindAction("Project", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -291,11 +343,70 @@ public partial class @PlayerInputsAction: IInputActionCollection2, IDisposable
         }
     }
     public PlayerMovementActions @PlayerMovement => new PlayerMovementActions(this);
+
+    // PlayerSummoning
+    private readonly InputActionMap m_PlayerSummoning;
+    private List<IPlayerSummoningActions> m_PlayerSummoningActionsCallbackInterfaces = new List<IPlayerSummoningActions>();
+    private readonly InputAction m_PlayerSummoning_Summon;
+    private readonly InputAction m_PlayerSummoning_Project;
+    public struct PlayerSummoningActions
+    {
+        private @PlayerInputsAction m_Wrapper;
+        public PlayerSummoningActions(@PlayerInputsAction wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Summon => m_Wrapper.m_PlayerSummoning_Summon;
+        public InputAction @Project => m_Wrapper.m_PlayerSummoning_Project;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerSummoning; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerSummoningActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerSummoningActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PlayerSummoningActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerSummoningActionsCallbackInterfaces.Add(instance);
+            @Summon.started += instance.OnSummon;
+            @Summon.performed += instance.OnSummon;
+            @Summon.canceled += instance.OnSummon;
+            @Project.started += instance.OnProject;
+            @Project.performed += instance.OnProject;
+            @Project.canceled += instance.OnProject;
+        }
+
+        private void UnregisterCallbacks(IPlayerSummoningActions instance)
+        {
+            @Summon.started -= instance.OnSummon;
+            @Summon.performed -= instance.OnSummon;
+            @Summon.canceled -= instance.OnSummon;
+            @Project.started -= instance.OnProject;
+            @Project.performed -= instance.OnProject;
+            @Project.canceled -= instance.OnProject;
+        }
+
+        public void RemoveCallbacks(IPlayerSummoningActions instance)
+        {
+            if (m_Wrapper.m_PlayerSummoningActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPlayerSummoningActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PlayerSummoningActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PlayerSummoningActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PlayerSummoningActions @PlayerSummoning => new PlayerSummoningActions(this);
     public interface IPlayerMovementActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+    }
+    public interface IPlayerSummoningActions
+    {
+        void OnSummon(InputAction.CallbackContext context);
+        void OnProject(InputAction.CallbackContext context);
     }
 }
