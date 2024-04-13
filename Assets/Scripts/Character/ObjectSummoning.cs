@@ -15,6 +15,8 @@ public class ObjectSummoning : MonoBehaviour
     private Transform summonPoint;
     [SerializeField, Range(10f, 5000f)]
     private float projectionForce;
+    [SerializeField, Range(10f, 100f)]
+    private float rotationSpeed;
 
     private PlayerInputsAction playerInputsAction;
     private GameObject highLightedObject;
@@ -60,6 +62,11 @@ public class ObjectSummoning : MonoBehaviour
         }
         else
         {
+            float rotation = playerInputsAction.PlayerSummoning.Rotate.ReadValue<float>();
+            if (rotation != 0f)
+            {
+                summonedObject.transform.Rotate(0f, rotation * rotationSpeed * Time.deltaTime, 0f);
+            }
             if (playerInputsAction.PlayerSummoning.Summon.WasReleasedThisFrame())
             {
                 DropSummonedObject();

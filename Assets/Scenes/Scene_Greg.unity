@@ -1402,6 +1402,36 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 124884469407352126, guid: 6d7831e395b3dc7418acff9111eb7a12,
+        type: 3}
+      propertyPath: m_BackGroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 124884469407352126, guid: 6d7831e395b3dc7418acff9111eb7a12,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 124884469407352126, guid: 6d7831e395b3dc7418acff9111eb7a12,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 124884469407352126, guid: 6d7831e395b3dc7418acff9111eb7a12,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1857657472002845033, guid: 6d7831e395b3dc7418acff9111eb7a12,
+        type: 3}
+      propertyPath: rotationSpeed
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1857657472002845033, guid: 6d7831e395b3dc7418acff9111eb7a12,
+        type: 3}
+      propertyPath: maxSummonableDistance
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 5393203288693541778, guid: 6d7831e395b3dc7418acff9111eb7a12,
         type: 3}
       propertyPath: airControl
