@@ -13,6 +13,7 @@ public static class GameManager
 
     public static void OpenMainMenu()
     {
+        m_gameStateMachine.RemoveState(EGameState.Pause);
         SceneLoader.LoadScenes(EScenes.MainMenuBackground, EScenes.MainMenuBackground | EScenes.UI, false,
         () => { m_gameStateMachine.ChangeState(EGameState.MainMenu); });
     }
