@@ -43,6 +43,16 @@ public class VolumeMenu : GameStateResponsiveMenu
 
     public void OnBackButton()
     {
-        GameManager.CloseSettingsMainMenu();
+        switch (m_gameStateMonitored)
+        {
+            case EGameState.SettingsMainMenu:
+                GameManager.CloseSettingsMainMenu();
+                break;
+            case EGameState.SettingsPause:
+                GameManager.CloseSettingsPause();
+                break;
+            default:
+                break;
+        }
     }
 }

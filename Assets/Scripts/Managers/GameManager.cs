@@ -9,6 +9,8 @@ public static class GameManager
     public static GameStateMachine GameStateMachine => m_gameStateMachine;
     private static GameStateMachine m_gameStateMachine = new GameStateMachine(EGameState.None);
 
+    public static bool IsGamePaused => m_gameStateMachine.GameState.HasFlag(EGameState.Pause);
+
     public static void OpenMainMenu()
     {
         SceneLoader.LoadScenes(EScenes.MainMenuBackground, EScenes.MainMenuBackground | EScenes.UI, false,
@@ -20,18 +22,31 @@ public static class GameManager
 #if UNITY_EDITOR
         Debug.Log("Starting game");
 #endif
+        m_gameStateMachine.RemoveState(EGameState.Pause);
         SceneLoader.LoadScenes(EScenes.Game, EScenes.Game | EScenes.UI, false,
         () => { m_gameStateMachine.ChangeState(EGameState.Game); });
     }
 
     public static void PauseGame()
     {
+        Time.timeScale = 0f;
         m_gameStateMachine.AddState(EGameState.Pause);
     }
 
     public static void ResumeGame()
     {
+        Time.timeScale = 1f;
         m_gameStateMachine.RemoveState(EGameState.Pause);
+    }
+
+    public static void OpenSettingsPause()
+    {
+        m_gameStateMachine.AddState(EGameState.SettingsPause);
+    }
+
+    public static void CloseSettingsPause()
+    {
+        m_gameStateMachine.RemoveState(EGameState.SettingsPause);
     }
 
     public static void OpenSettingsMainMenu()

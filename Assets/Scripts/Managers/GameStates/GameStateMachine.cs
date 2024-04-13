@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class GameStateMachine
 {
-    EGameState GameState => m_gameState;
-    EGameState m_gameState;
+    public EGameState GameState => m_gameState;
+    private EGameState m_gameState;
 
     public event Action<EGameState> OnStateEnter;
     public event Action<EGameState> OnStateExit;
