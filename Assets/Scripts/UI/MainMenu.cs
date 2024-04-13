@@ -27,13 +27,6 @@ public class MainMenu : MonoBehaviour
         GameManager.StartGame();
     }
 
-    public void OnSettingsButton()
-    {
-#if UNITY_EDITOR
-        Debug.Log("Opening settings");
-#endif
-    }
-
     public void OnQuitButton()
     {
         GameManager.ExitGame();

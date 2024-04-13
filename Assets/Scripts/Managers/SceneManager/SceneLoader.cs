@@ -24,7 +24,6 @@ public class SceneLoader : MonoBehaviour
         {
             scenesToLoad |= activeScene;
         }
-        Debug.Log($"Scenes requested : {scenesToLoad}");
 #if UNITY_EDITOR
         Debug.Log($"Scenes requested : {scenesToLoad}");
 #endif
@@ -42,9 +41,9 @@ public class SceneLoader : MonoBehaviour
             }
         }
 #if UNITY_EDITOR
-        Debug.Log($"Scenes already loaded : {loadedScenes}");
-        Debug.Log($"Scenes unused : {unusedScenes}");
-        Debug.Log($"Scenes to load : {scenesToLoad}");
+        Debug.Log($"    Scenes already loaded : {loadedScenes}");
+        Debug.Log($"    Scenes unused : {unusedScenes}");
+        Debug.Log($"    Scenes to load : {scenesToLoad}");
 #endif
         if (unusedScenes != EScenes.None)
         {
@@ -64,7 +63,7 @@ public class SceneLoader : MonoBehaviour
             {
                 scenesToLoad &= ~value;
 #if UNITY_EDITOR
-                Debug.Log($"Skipping scenes duplicate : {value}");
+                Debug.Log($"        Skipping scenes duplicate : {value}");
 #endif
                 continue;
             }

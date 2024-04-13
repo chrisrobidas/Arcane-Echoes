@@ -167,6 +167,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9eaf918b97e22a4baddfee3efac3f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundBank:
+    _swapColorSound:
+      _clip: {fileID: 0}
+      _mixerGroup: {fileID: 0}
+    _lockedColorSound:
+      _clip: {fileID: 0}
+      _mixerGroup: {fileID: 0}
+    _translationSound:
+      _clip: {fileID: 0}
+      _mixerGroup: {fileID: 0}
+    _endlevelSound:
+      _clip: {fileID: 0}
+      _mixerGroup: {fileID: 0}
+  audioMixer: {fileID: 24100000, guid: 170546c680527ac4f9a1a293e4a5e96f, type: 2}
+  m_masterVolume: 1
+  m_gameVolume: 1
+  m_musicVolume: 1
 --- !u!1 &1728411648
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +210,7 @@ Transform:
   m_GameObject: {fileID: 1728411648}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1193.5267, y: 602.7814, z: -7.344721}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
