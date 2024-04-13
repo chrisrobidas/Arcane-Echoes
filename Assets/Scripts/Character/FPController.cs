@@ -86,7 +86,6 @@ public class PlayerMovement : MonoBehaviour
             }
             gravityForce.y += gravityConstant * Time.deltaTime;
         }
-        // Reset the gravityForce to very low value just to stick player to the ground
         controller.Move(gravityForce * Time.deltaTime);
     }
 
@@ -123,11 +122,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump(InputAction.CallbackContext context)
     {
-        Debug.Log("JUMPING");
         if(Physics.CheckSphere(groundCheck.position, groundDistanceCheck, groundMask))
         {
             gravityForce.y = Mathf.Sqrt(jumpHeight * -2 * gravityConstant);
             controller.Move(gravityForce * Time.deltaTime);
         }
+    }
+
+    private void OnDestroy()
+    {
+        playerInputsAction.PlayerMovement.Jump.performed -= Jump;
+        playerInputsAction.PlayerMovement.Disable();
+
     }
 }
