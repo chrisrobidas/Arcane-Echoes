@@ -8,13 +8,15 @@ public class MeleeEnemy : Enemy
 
     public override void Attack()
     {
+        transform.LookAt(GameObject.FindWithTag("Player").transform.position, transform.up);
+
         if (IsAtStoppingDistanceFromPlayer())
         {
             _elapsedTimeInAttackState += Time.deltaTime;
 
             if (_elapsedTimeInAttackState >= _timeBeforeAttack)
             {
-                Debug.Log("Attack!!!");
+                GameManager.Instance.GameOver();
             }
         }
         else
