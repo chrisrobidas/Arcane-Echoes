@@ -194,6 +194,7 @@ GameObject:
   - component: {fileID: 5530165352075797781}
   - component: {fileID: 8945343825062353341}
   - component: {fileID: 5393203288693541778}
+  - component: {fileID: 1857657472002845033}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -272,6 +273,24 @@ MonoBehaviour:
   airControl: 1
   speedBoonMultiplier: 0
   gravityConstant: -9.81
+--- !u!114 &1857657472002845033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6208413532667280692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9827ef51a8af91143bfcac9fc4463b8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  summonableLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  maxSummonableDistance: 10
+  summonPoint: {fileID: 7764990425054809423}
+  projectionForce: 1000
 --- !u!1 &8874944801920209139
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,7 +316,7 @@ Transform:
   m_GameObject: {fileID: 8874944801920209139}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
