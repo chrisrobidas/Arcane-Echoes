@@ -5,9 +5,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class VolumeMenu : MonoBehaviour
+public class VolumeMenu : GameStateResponsiveMenu
 {
-    [SerializeField] GameObject m_volumeMenu;
+    public override EGameState gameStateMonitored => m_gameStateMonitored;
+    [SerializeField] EGameState m_gameStateMonitored;
 
     [SerializeField] Slider masterSlider;
     public static Action<float> onMasterVolumeChanged;
@@ -18,8 +19,10 @@ public class VolumeMenu : MonoBehaviour
     [SerializeField] Slider musicSlider;
     public static Action<float> onMusicVolumeChanged;
 
-    private void OnEnable()
+
+    protected override void OnEnable()
     {
+        base.OnEnable();
         masterSlider.value = PlayerPrefs.GetFloat(SoundManager.masterVolumeParamName, 1);
         masterSlider.onValueChanged.AddListener((value) => onMasterVolumeChanged?.Invoke(value));
 
@@ -30,16 +33,16 @@ public class VolumeMenu : MonoBehaviour
         musicSlider.onValueChanged.AddListener((value) => onMusicVolumeChanged?.Invoke(value));
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnEnable();
         masterSlider.onValueChanged.RemoveAllListeners();
         gameSlider.onValueChanged.RemoveAllListeners();
         musicSlider.onValueChanged.RemoveAllListeners();
     }
 
-    public void Open(bool open)
+    public void OnBackButton()
     {
-        m_volumeMenu.SetActive(open);
-        if (open) EventSystem.current.firstSelectedGameObject = masterSlider.gameObject;
+        GameManager.CloseSettingsMainMenu();
     }
 }

@@ -15,7 +15,7 @@ public class SceneLoader : MonoBehaviour
     public static LoadingProgress LoadingProgress => m_loadingProgress;
     private static LoadingProgress m_loadingProgress = new LoadingProgress();
 
-    public static async void LoadScenes(EScenes activeScene, EScenes scenesToLoad, bool reloadDuplicate)
+    public static async void LoadScenes(EScenes activeScene, EScenes scenesToLoad, bool reloadDuplicate, Action actionAfterLoad = null)
     {
         OnSceneGroupLoadStart?.Invoke();
 
@@ -41,9 +41,9 @@ public class SceneLoader : MonoBehaviour
             }
         }
 #if UNITY_EDITOR
-        Debug.Log($"    Scenes already loaded : {loadedScenes}");
-        Debug.Log($"    Scenes unused : {unusedScenes}");
-        Debug.Log($"    Scenes to load : {scenesToLoad}");
+        Debug.Log($"        Scenes already loaded : {loadedScenes}");
+        Debug.Log($"        Scenes unused : {unusedScenes}");
+        Debug.Log($"        Scenes to load : {scenesToLoad}");
 #endif
         if (unusedScenes != EScenes.None)
         {
@@ -63,7 +63,7 @@ public class SceneLoader : MonoBehaviour
             {
                 scenesToLoad &= ~value;
 #if UNITY_EDITOR
-                Debug.Log($"        Skipping scenes duplicate : {value}");
+                Debug.Log($"                Skipping scenes duplicate : {value}");
 #endif
                 continue;
             }
@@ -87,6 +87,7 @@ public class SceneLoader : MonoBehaviour
             SceneManager.SetActiveScene(scene);
         }
 
+        actionAfterLoad?.Invoke();
         OnSceneGroupLoadEnd?.Invoke();
     }
 

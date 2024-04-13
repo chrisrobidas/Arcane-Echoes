@@ -58,7 +58,6 @@ public class SoundManager : MonoBehaviour
             m_instance = this;
         }
         defaultAudioSource = GetComponent<AudioSource>();
-        DontDestroyOnLoad(gameObject);
 
         m_masterVolume = PlayerPrefs.GetFloat(masterVolumeParamName);
         m_gameVolume = PlayerPrefs.GetFloat(gameVolumeParamName);
@@ -93,11 +92,12 @@ public class SoundManager : MonoBehaviour
     {
         bool volumeSet = audioMixer.SetFloat(parameterName, NormalizedToMixerValue(normalizedVolume));
         if (!volumeSet)
+        {
 #if UNITY_EDITOR
             Debug.LogError("The AudioMixer parameter was not found");
 #endif
+        }
     }
-
 
     private float NormalizedToMixerValue(float normalizedValue)
     {

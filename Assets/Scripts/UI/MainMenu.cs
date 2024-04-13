@@ -3,28 +3,18 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class MainMenu : MonoBehaviour
+public class MainMenu : GameStateResponsiveMenu
 {
-    [SerializeField] GameObject m_mainMenu;
-
-    private void OnEnable()
-    {
-        
-    }
-
-    private void OnDisable()
-    {
-
-    }
-
-    private void Show(bool show)
-    {
-        m_mainMenu.SetActive(show);
-    }
+    public override EGameState gameStateMonitored => EGameState.MainMenu;
 
     public void OnPlayButton()
     {
-        GameManager.StartGame();
+        GameManager.PlayGame();
+    }
+
+    public void OnSettingsButton()
+    {
+        GameManager.OpenSettingsMainMenu();
     }
 
     public void OnQuitButton()
