@@ -31,15 +31,18 @@ public class PlayerMovement : MonoBehaviour
     [Range(0.25f, 0.75f)]
     private float crouchSpeedMultiplier;
     [SerializeField]
-    [Range(1f, 3f)]
+    [Range(1f, 10f)]
     private float jumpHeight;
+    [SerializeField]
+    private bool airControl;
     [Space]
     [HideInInspector]
-    public float speedBoon;
+    public float speedBoonMultiplier = 1f;
     private float moveSpeed;
     // End Character control variables
 
     // Gravity
+    [Header("Gravity")]
     [SerializeField]
     private float gravity = -9.81f;
     Vector3 velocity;
@@ -53,44 +56,51 @@ public class PlayerMovement : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {        
-        float longitudinalMove = playerInputsAction.PlayerMovement.Movement.ReadValue<Vector2>().x;
-        float transversalMove = playerInputsAction.PlayerMovement.Movement.ReadValue<Vector2>().y;
-
-        //if (Input.GetKey(KeyCode.LeftShift))
-        //{
-        //    moveSpeed = sprintSpeed;
-        //}
-        //else if (Input.GetKey(KeyCode.LeftControl))
-        //{
-        //    moveSpeed = crouchSpeed;
-        //}
-        //else
-        //{
-        //    moveSpeed = baseSpeed;
-        //}
-
-        // Vector3 direction = transform.right * horizontalMov + transform.forward * verticalMov;
-        // controller.Move(direction * moveSpeed * Time.deltaTime);
-
-        if (!Physics.CheckSphere(groundCheck.position, groundDistanceCheck, groundMask))
+    {
+        if (Physics.CheckSphere(groundCheck.position, groundDistanceCheck, groundMask))
         {
-            // Apply gravity
-            velocity.y += gravity * Time.deltaTime;
-            controller.Move(velocity * Time.deltaTime);
+            Move();
+            velocity.y = -0.5f;
         }
         else
         {
-            velocity.y = -0.5f; // Reset the velocity to very low value just to stick player to the ground
+            if(airControl)
+            {
+                Move();
+            }
+            velocity.y += gravity * Time.deltaTime;            
         }
-        
+        // Reset the velocity to very low value just to stick player to the ground
+        controller.Move(velocity * Time.deltaTime);
+    }
+
+    private void Move()
+    {
+        float transversalMove = playerInputsAction.PlayerMovement.Movement.ReadValue<Vector2>().x;
+        float longitudinalMove = playerInputsAction.PlayerMovement.Movement.ReadValue<Vector2>().y;
+        float playerSpeedModifier = 1f;
+
+        if (playerInputsAction.PlayerMovement.Crouch.ReadValue<float>() > 0f & playerInputsAction.PlayerMovement.Sprint.ReadValue<float>() == 0f)
+        {
+            playerSpeedModifier *= crouchSpeedMultiplier;
+        }
+        if (playerInputsAction.PlayerMovement.Crouch.ReadValue<float>() == 0f & playerInputsAction.PlayerMovement.Sprint.ReadValue<float>() > 0f)
+        {
+            playerSpeedModifier *= sprintSpeedMultiplier;
+        }
+        moveSpeed = baseSpeed * playerSpeedModifier;
+
+        Vector3 direction = transform.right * transversalMove + transform.forward * longitudinalMove;
+        controller.Move(direction * moveSpeed * Time.deltaTime);
     }
 
     private void Jump(InputAction.CallbackContext context)
     {
         if(Physics.CheckSphere(groundCheck.position, groundDistanceCheck, groundMask))
         {
+            Debug.Log("Jumping");
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
+            controller.Move(velocity * Time.deltaTime);
         }
     }
 }
