@@ -70,6 +70,14 @@ public abstract class Enemy : MonoBehaviour
         return true;
     }
 
+    protected void LookAtPlayer()
+    {
+        var lookPosition = GameObject.FindWithTag("Player").transform.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(lookPosition);
+        lookRotation.eulerAngles = new Vector3(transform.rotation.eulerAngles.x, lookRotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+        transform.rotation = lookRotation;
+    }
+
     private void Wander()
     {
         _agent.stoppingDistance = 0f;

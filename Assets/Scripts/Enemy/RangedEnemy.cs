@@ -10,7 +10,7 @@ public class RangedEnemy : Enemy
 
     public override void Attack()
     {
-        transform.LookAt(GameObject.FindWithTag("Player").transform.position, transform.up);
+        LookAtPlayer();
 
         if (IsAtStoppingDistanceFromPlayer())
         {

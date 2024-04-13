@@ -8,7 +8,7 @@ public class MeleeEnemy : Enemy
 
     public override void Attack()
     {
-        transform.LookAt(GameObject.FindWithTag("Player").transform.position, transform.up);
+        LookAtPlayer();
 
         if (IsAtStoppingDistanceFromPlayer())
         {
