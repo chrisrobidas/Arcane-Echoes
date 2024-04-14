@@ -33,6 +33,7 @@ public class ObjectSummoning : MonoBehaviour
 
     // Effects
     [Header("Effects")]
+    private Animator playerAnimator;
     [SerializeField]
     private GameObject m_invocationCircle;
     // End Effects
@@ -45,6 +46,7 @@ public class ObjectSummoning : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerAnimator = GetComponentInChildren<Animator>();
         m_playerInputsAction = new PlayerInputsAction();
         m_playerInputsAction.PlayerSummoning.Enable();
         m_playerInputsAction.PlayerSummoning.Summon.performed += SummonObject;
@@ -104,6 +106,7 @@ public class ObjectSummoning : MonoBehaviour
     {
         if (m_highlightedObject != null & m_summonTimer <= 0f)
         {
+            playerAnimator.SetTrigger("HoldTrigger");
             m_invocationCircle.SetActive(true);
             m_highlightedObject.GetComponent<SummonableObject>().OnMouseHooverExit();
             Vector3 l_scale = m_highlightedObject.transform.localScale;
@@ -124,6 +127,7 @@ public class ObjectSummoning : MonoBehaviour
     {
         if (m_summonedObject != null & m_summonedObject.GetComponent<SummonableObject>().IsInstanciable)
         {
+            playerAnimator.SetTrigger("ProjectTrigger");
             m_summonedObject.GetComponent<SummonableObject>().OnDrop();
             Rigidbody rb = m_summonedObject.GetComponent<Rigidbody>();
             rb.AddForce(m_objectHoldPoint.forward * m_projectionForce);
@@ -135,6 +139,7 @@ public class ObjectSummoning : MonoBehaviour
     {
         if (m_summonedObject != null)
         {
+            playerAnimator.SetTrigger("DropTrigger");
             m_summonedObject.GetComponent<SummonableObject>().OnDrop();
             m_summonedObject = null;
         }        
