@@ -2843,7 +2843,10 @@ PrefabInstance:
       value: 74
       objectReference: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> main
     - target: {fileID: -8513424388201257645, guid: bd849a337d619864988dda1db868018c,
         type: 3}
       propertyPath: m_Layer
@@ -2894,6 +2897,9 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+<<<<<<< HEAD
+>>>>>>> main
+=======
 >>>>>>> main
     - target: {fileID: 919132149155446097, guid: bd849a337d619864988dda1db868018c,
         type: 3}
@@ -2901,7 +2907,10 @@ PrefabInstance:
       value: sword_combined
       objectReference: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> main
     - target: {fileID: 919132149155446097, guid: bd849a337d619864988dda1db868018c,
         type: 3}
       propertyPath: m_Layer
@@ -2912,6 +2921,9 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+<<<<<<< HEAD
+>>>>>>> main
+=======
 >>>>>>> main
     m_RemovedComponents: []
     m_RemovedGameObjects: []
