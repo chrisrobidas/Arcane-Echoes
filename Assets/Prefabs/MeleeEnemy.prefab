@@ -1547,7 +1547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ViewRadius: 20
-  ViewAngle: 188
+  ViewAngle: 70
   _drawFieldOfView: 1
   VisibleTargets: []
   _targetMask:
