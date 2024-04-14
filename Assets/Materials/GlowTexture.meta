@@ -1,17 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<<< HEAD:Assets/Materials/GlowTexture.meta
 guid: 7e276d869c6d3244ebcee519f6269469
-========
-guid: 518f2b8b610eb1f4f898af5547fcaea4
->>>>>>>> main:Assets/Elodie/Animation.meta
-=======
-guid: 7e276d869c6d3244ebcee519f6269469
->>>>>>> main
-=======
-guid: 7e276d869c6d3244ebcee519f6269469
->>>>>>> main
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
