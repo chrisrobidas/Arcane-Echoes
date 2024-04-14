@@ -3,8 +3,8 @@ using UnityEngine;
 public class CheckpointManager : MonoBehaviour
 {
     private static CheckpointManager m_instance;
-    public static readonly string s_chechpointPlayerPrefName = "Checkpoint";
-    private static int s_chechpointSaved;
+    public static readonly string s_checkpointPlayerPrefName = "Checkpoint";
+    private static int s_checkpointSaved;
 
     #region Initialization
     private void Awake()
@@ -18,10 +18,10 @@ public class CheckpointManager : MonoBehaviour
             m_instance = this;
         }
 
-        s_chechpointSaved = PlayerPrefs.GetInt(s_chechpointPlayerPrefName, -1);
-        s_chechpointSaved = 0;
+        s_checkpointSaved = PlayerPrefs.GetInt(s_checkpointPlayerPrefName, -1);
+
 #if UNITY_EDITOR
-        if (s_chechpointSaved == -1) 
+        if (s_checkpointSaved == -1) 
         {
             Debug.Log("<b>[CheckpointManager]</b> No checkpoint saved");
         }
@@ -30,14 +30,14 @@ public class CheckpointManager : MonoBehaviour
 
     private void OnEnable()
     {
-        Checkpoint.register += OnRegisterCheckpoint;
-        Checkpoint.activate += OnActivateCheckpoint;
+        Checkpoint.Register += OnRegisterCheckpoint;
+        Checkpoint.Activate += OnActivateCheckpoint;
     }
 
     private void OnDisable()
     {
-        Checkpoint.register -= OnRegisterCheckpoint;
-        Checkpoint.activate -= OnActivateCheckpoint;
+        Checkpoint.Register -= OnRegisterCheckpoint;
+        Checkpoint.Activate -= OnActivateCheckpoint;
     }
 
     #endregion
@@ -47,7 +47,7 @@ public class CheckpointManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log($"<b>[CheckpointManager]</b> Checkpoint registered (ID {checkpoint.ID})");
 #endif
-        if (checkpoint != null && s_chechpointSaved == checkpoint.ID)
+        if (checkpoint != null && s_checkpointSaved == checkpoint.ID)
         {
             Debug.Log($"<b>[CheckpointManager]</b> Spawning player at checkpoint {checkpoint.ID}");
             checkpoint.SpawnPlayer();
@@ -59,12 +59,12 @@ public class CheckpointManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log($"<b>[CheckpointManager]</b> Checkpoint activated (ID {checkpoint.ID})");
 #endif
-        s_chechpointSaved = checkpoint.ID;
-        PlayerPrefs.SetInt(s_chechpointPlayerPrefName, s_chechpointSaved);
+        s_checkpointSaved = checkpoint.ID;
+        PlayerPrefs.SetInt(s_checkpointPlayerPrefName, s_checkpointSaved);
     }
 
     public static void ResetProgression()
     {
-        PlayerPrefs.SetInt(s_chechpointPlayerPrefName, -1);
+        PlayerPrefs.SetInt(s_checkpointPlayerPrefName, -1);
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
@@ -6,24 +7,26 @@ public class Checkpoint : MonoBehaviour
     public int ID => m_ID;
     [SerializeField] int m_ID;
 
-    public static event Action<Checkpoint> register;
-    public static event Action<Checkpoint> activate;
+    private string m_playerTag = "Player";
+
+    public static event Action<Checkpoint> Register;
+    public static event Action<Checkpoint> Activate;
 
     private void Start()
     {
-        register?.Invoke(this);
+        Register?.Invoke(this);
     }
 
     public void SpawnPlayer()
     {
-        
+        Debug.Log("<color=red><b>PLACEHOLDER METHOD</b> (CheckPoint.SpawnPlayer)</color>");
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (other.gameObject.tag == m_playerTag)
         {
-            activate?.Invoke(this);
+            Activate?.Invoke(this);
         }
     }
 }
