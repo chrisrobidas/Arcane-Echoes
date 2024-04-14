@@ -72,4 +72,12 @@ public class CheckpointManager : MonoBehaviour
     {
         PlayerPrefs.SetInt(s_checkpointPlayerPrefName, -1);
     }
+
+#if UNITY_EDITOR
+    [ContextMenu("Reset progression")]
+    public void ResetProgressionMenu()
+    {
+        ResetProgression();
+    }
+#endif
 }
