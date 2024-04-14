@@ -12,6 +12,8 @@ public static class GameManager
 
     public static bool IsGamePaused => m_gameStateMachine.GameState.HasFlag(EGameState.Pause);
 
+    public static bool IsGameOver;
+
     public static void OpenMainMenu()
     {
         SoundManager.PlayMusic(SoundManager.SoundBank.mainMenuMusic);
@@ -96,6 +98,12 @@ public static class GameManager
 
     public static void TriggerGameOver()
     {
+        if (!IsGameOver)
+        {
+            SoundManager.PlaySound(SoundManager.SoundBank.deathSound);
+        }
+
+        IsGameOver = true;
         m_gameStateMachine.ChangeState(EGameState.GameOver);
     }
 

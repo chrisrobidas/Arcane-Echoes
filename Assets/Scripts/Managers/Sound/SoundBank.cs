@@ -35,4 +35,7 @@ public class SoundBank
 
     public Sound strikeSound => m_strikeSound;
     [SerializeField] private Sound m_strikeSound;
+
+    public Sound deathSound => m_deathSound;
+    [SerializeField] private Sound m_deathSound;
 }
