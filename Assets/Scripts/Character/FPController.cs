@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -50,12 +47,7 @@ public class PlayerMovement : MonoBehaviour
     private float gravityConstant = -9.81f;
     Vector3 gravityForce;
 
-    // Defaults settings
-    private float defaultControllerHeight;
-    private float defaultControllerCenterY;
-    private float defaultCameraPosY;
-    private float defaultObjectSummonPosY;
-
+    private bool isGrounded;
     private bool isCrouching;
 
     private void Start()
@@ -63,11 +55,6 @@ public class PlayerMovement : MonoBehaviour
         playerInputsAction = new PlayerInputsAction();
         playerInputsAction.PlayerMovement.Enable();
         playerInputsAction.PlayerMovement.Jump.performed += Jump;
-
-        defaultControllerHeight = controller.height;
-        defaultControllerCenterY = controller.center.y;
-        defaultCameraPosY = mainCamera.position.y;
-        defaultObjectSummonPosY = objectsSummonPoint.position.y;
     }
 
     // Update is called once per frame
@@ -75,12 +62,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Physics.CheckSphere(groundCheck.position, groundDistanceCheck, groundMask) & gravityForce.y < 0f)
         {
+            isGrounded = true;
             Move();
             gravityForce.y = - 0.5f;
         }
         else
         {
-            if(airControl)
+            isGrounded = false;
+            if (airControl)
             {
                 Move();
             }
@@ -96,25 +85,19 @@ public class PlayerMovement : MonoBehaviour
         float crouching = playerInputsAction.PlayerMovement.Crouch.ReadValue<float>();
         float sprinting = playerInputsAction.PlayerMovement.Sprint.ReadValue<float>();
         float playerSpeedModifier = 1f;
+        isCrouching = false;
 
-        if (crouching > 0f & sprinting == 0f)
+        if (crouching > 0f & sprinting == 0f & isGrounded)
         {
             playerSpeedModifier *= crouchSpeedMultiplier;
-        }
-        if (crouching == 0f & sprinting > 0f)
-        {
-            playerSpeedModifier *= sprintSpeedMultiplier;
-        }
-        moveSpeed = baseSpeed * playerSpeedModifier;
-
-        if (crouching > 0)
-        {
             isCrouching = true;
         }
-        else
+        if (crouching == 0f & sprinting > 0f & isGrounded)
         {
+            playerSpeedModifier *= sprintSpeedMultiplier;
             isCrouching = false;
         }
+        moveSpeed = baseSpeed * playerSpeedModifier;
 
         Vector3 direction = transform.right * transversalMove + transform.forward * longitudinalMove;
         controller.Move(direction * moveSpeed * Time.deltaTime);
@@ -133,6 +116,5 @@ public class PlayerMovement : MonoBehaviour
     {
         playerInputsAction.PlayerMovement.Jump.performed -= Jump;
         playerInputsAction.PlayerMovement.Disable();
-
     }
 }

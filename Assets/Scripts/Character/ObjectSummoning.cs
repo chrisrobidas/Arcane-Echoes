@@ -15,6 +15,8 @@ public class ObjectSummoning : MonoBehaviour
     private Transform summonPoint;
     [SerializeField, Range(10f, 5000f)]
     private float projectionForce;
+    [SerializeField, Range(10f, 100f)]
+    private float rotationSpeed;
 
     private PlayerInputsAction playerInputsAction;
     private GameObject highLightedObject;
@@ -60,6 +62,11 @@ public class ObjectSummoning : MonoBehaviour
         }
         else
         {
+            float rotation = playerInputsAction.PlayerSummoning.Rotate.ReadValue<float>();
+            if (rotation != 0f)
+            {
+                summonedObject.transform.Rotate(0f, rotation * rotationSpeed * Time.deltaTime, 0f);
+            }
             if (playerInputsAction.PlayerSummoning.Summon.WasReleasedThisFrame())
             {
                 DropSummonedObject();
@@ -75,7 +82,7 @@ public class ObjectSummoning : MonoBehaviour
             summonedObject = Instantiate(highLightedObject, summonPoint.position, highLightedObject.transform.rotation);
             summonedObject.GetComponent<Rigidbody>().isKinematic = true;
             summonedObject.GetComponent<Collider>().enabled = false;
-            summonedObject.transform.SetParent(gameObject.transform);
+            summonedObject.transform.SetParent(summonPoint); // gameObject.transform
             highLightedObject = null;
         }        
     }
@@ -88,7 +95,7 @@ public class ObjectSummoning : MonoBehaviour
             summonedObject.GetComponent<Collider>().enabled = true;
             Rigidbody rb = summonedObject.GetComponent<Rigidbody>();
             rb.isKinematic = false;
-            rb.AddForce(transform.forward * projectionForce);
+            rb.AddForce(summonPoint.forward * projectionForce);
             summonedObject = null;
         }        
     }
