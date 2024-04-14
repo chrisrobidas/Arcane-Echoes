@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public abstract class GameStateResponsiveMenu : MonoBehaviour, IGameStateEnterHandler, IGameStateExitHandler
+public abstract class GameStateResponsiveMenu : MonoBehaviour
 {
     [SerializeField] GameObject m_menuBody;
     [SerializeField] GameObject m_firstSelectedGameObject;

@@ -1,39 +1,17 @@
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Pool;
 
-[Serializable]
-public class SoundBank
-{
-    [Serializable]
-    public class Sound
-    {
-        public AudioClip clip => _clip;
-        [SerializeField] AudioClip _clip;
-        public AudioMixerGroup mixerGroup => _mixerGroup;
-        [SerializeField] AudioMixerGroup _mixerGroup;
-        public float volume => m_volume;
-        [SerializeField] [Range(0,1)]float m_volume = 1;
-    }
-    public Sound swapColorSound => _swapColorSound;
-    [SerializeField] private Sound _swapColorSound;
-    public Sound lockedColorSound => _lockedColorSound;
-    [SerializeField] private Sound _lockedColorSound;
-    public Sound translationSound => _translationSound;
-    [SerializeField] private Sound _translationSound;
-
-    public Sound endlevelSound => _endlevelSound;
-    [SerializeField] private Sound _endlevelSound;
-}
-
 public class SoundManager : MonoBehaviour
 {
-    public SoundBank soundBank;
-    private AudioSource defaultAudioSource;
+    public static SoundBank SoundBank => m_instance.soundBank;
+    [SerializeField] SoundBank soundBank;
+
+    private AudioSource m_musicAudioSource;
 
     private static SoundManager m_instance;
-    public static SoundManager Instance { get { return m_instance; } }
 
     [Header("SoundEmitter ObjectPool")]
     [SerializeField] private SoundEmitter m_soundEmitterPrefab;
@@ -44,10 +22,10 @@ public class SoundManager : MonoBehaviour
 
     [Header("Audio control")]
     [SerializeField] private AudioMixer audioMixer = default;
+    [SerializeField] [Range(0,1)]private float m_customSpacializationValue = 1f;
 
     [Range(0.0001f, 1f)]
     [SerializeField] private float m_masterVolume = 1f;
-
     public static readonly string masterVolumeParamName = "MasterVolume";
     [Range(0.0001f, 1f)]
     [SerializeField] private float m_gameVolume = 1f;
@@ -56,6 +34,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private float m_musicVolume = 1f;
     public static readonly string musicVolumeParamName = "MusicVolume";
 
+    #region Initialization
     private void Awake()
     {
         if (m_instance != null && m_instance != this)
@@ -66,7 +45,7 @@ public class SoundManager : MonoBehaviour
         {
             m_instance = this;
         }
-        defaultAudioSource = GetComponent<AudioSource>();
+        m_musicAudioSource = GetComponent<AudioSource>();
 
         m_masterVolume = PlayerPrefs.GetFloat(masterVolumeParamName);
         m_gameVolume = PlayerPrefs.GetFloat(gameVolumeParamName);
@@ -98,13 +77,7 @@ public class SoundManager : MonoBehaviour
         VolumeMenu.onGameVolumeChanged -= SetEffectsVolume;
         VolumeMenu.onMusicVolumeChanged -= SetMusicVolume;
     }
-
-
-    [ContextMenu("Test sound")]
-    public void TestSound()
-    {
-        PlaySound(GetComponent<AudioSource>(), soundBank.swapColorSound);
-    }
+    #endregion
 
     #region ObjectPool
     private void InitializeObjectPool()
@@ -112,10 +85,11 @@ public class SoundManager : MonoBehaviour
         m_pool = new ObjectPool<SoundEmitter>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, m_collectionChecks, m_initialPoolCapacity, m_maxPoolSize);
     }
 
+    // Called when an item is needed but none exists in the pool
     SoundEmitter CreatePooledItem()
     {
         SoundEmitter soundEmitter = Instantiate(m_soundEmitterPrefab, transform);
-        soundEmitter.Prepare();
+        soundEmitter.Initialize(m_pool);
         return soundEmitter;
     }
 
@@ -139,7 +113,7 @@ public class SoundManager : MonoBehaviour
     }
     #endregion
 
-
+    #region VolumeManagement
     public void SetGroupVolume(string parameterName, float normalizedVolume)
     {
         bool volumeSet = audioMixer.SetFloat(parameterName, NormalizedToMixerValue(normalizedVolume));
@@ -159,7 +133,6 @@ public class SoundManager : MonoBehaviour
 
     void SetMasterVolume(float value)
     {
-        Debug.Log(value);
         m_masterVolume = value;
         PlayerPrefs.SetFloat(masterVolumeParamName, m_masterVolume);
         SetGroupVolume(masterVolumeParamName, m_masterVolume);
@@ -178,23 +151,45 @@ public class SoundManager : MonoBehaviour
         PlayerPrefs.SetFloat(musicVolumeParamName, m_musicVolume);
         SetGroupVolume(musicVolumeParamName, m_musicVolume);
     }
+    #endregion
 
+    #region SoundPlay
 
-    void PlaySound(AudioSource source, SoundBank.Sound sound)
+    public static void PlaySoundAt(SoundBank.Sound sound, Vector3 position)
     {
-        source.clip = sound.clip;
-        source.outputAudioMixerGroup = sound.mixerGroup;
-        source.volume = sound.volume;
-        source.Play();
+        SoundEmitter soundEmitter = m_instance.m_pool.Get();
+        soundEmitter.PlaySoundAt(sound, position, m_instance.m_customSpacializationValue);
     }
+
+    public static void PlaySound(SoundBank.Sound sound)
+    {
+        SoundEmitter soundEmitter = m_instance.m_pool.Get();
+        soundEmitter.PlaySound(sound);
+    }
+
+    public static void PlayMusic(AudioClip audioClip)
+    {
+        m_instance.m_musicAudioSource.clip = audioClip;
+        m_instance.m_musicAudioSource.loop = true;
+        m_instance.m_musicAudioSource.Play();
+    }   
 
     public void StopCurrent()
     {
-        defaultAudioSource.Stop();
+        m_musicAudioSource.Stop();
     }
+    #endregion
 
-    public void SetVolume(float volume)
+#if UNITY_EDITOR
+    [ContextMenu("Test sound")]
+    public async void TestSound()
     {
-        defaultAudioSource.volume = volume;
+        PlaySound(soundBank.impactSound);
+        await Task.Delay(100);
+        PlaySoundAt(soundBank.impactSound, transform.position + Vector3.right);
+        await Task.Delay(1000);
+        PlaySoundAt(soundBank.impactSound, transform.position + Vector3.left * 100);
+        //PlaySound(GetComponent<AudioSource>(), soundBank.swapColorSound);
     }
+#endif
 }
