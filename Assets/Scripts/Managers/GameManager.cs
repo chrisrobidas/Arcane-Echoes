@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public static class GameManager
 {
@@ -11,8 +12,11 @@ public static class GameManager
 
     public static bool IsGamePaused => m_gameStateMachine.GameState.HasFlag(EGameState.Pause);
 
+    public static bool IsGameOver;
+
     public static void OpenMainMenu()
     {
+        SoundManager.PlayMusic(SoundManager.SoundBank.mainMenuMusic);
         m_gameStateMachine.RemoveState(EGameState.Pause);
         SceneLoader.LoadScenes(EScenes.MainMenuBackground, EScenes.MainMenuBackground | EScenes.UI, false,
         () => { m_gameStateMachine.ChangeState(EGameState.MainMenu); });
@@ -20,9 +24,15 @@ public static class GameManager
 
     public static void PlayGame()
     {
+        SoundManager.PlayMusic(SoundManager.SoundBank.gameMusic);
         m_gameStateMachine.RemoveState(EGameState.Pause);
         SceneLoader.LoadScenes(EScenes.Game, EScenes.Game | EScenes.UI, false,
         () => { m_gameStateMachine.ChangeState(EGameState.Game); });
+    }
+
+    public static void RestartGame()
+    {
+        SceneLoader.LoadScenes(EScenes.Game, EScenes.Game, true);
     }
 
     public static void EnableTutorial(bool enable)
@@ -88,6 +98,12 @@ public static class GameManager
 
     public static void TriggerGameOver()
     {
+        if (!IsGameOver)
+        {
+            SoundManager.PlaySound(SoundManager.SoundBank.deathSound);
+        }
+
+        IsGameOver = true;
         m_gameStateMachine.ChangeState(EGameState.GameOver);
     }
 

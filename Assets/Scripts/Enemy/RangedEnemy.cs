@@ -36,5 +36,6 @@ public class RangedEnemy : Enemy
         projectile.transform.position = _projectileSpawn.position;
         projectile.transform.LookAt(GameObject.FindWithTag("Player").transform.position);
         projectile.GetComponent<Projectile>().Caster = gameObject;
+        SoundManager.PlaySoundAt(SoundManager.SoundBank.fireballSound, _projectileSpawn.position);
     }
 }

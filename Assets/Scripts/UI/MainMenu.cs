@@ -21,4 +21,9 @@ public class MainMenu : GameStateResponsiveMenu
     {
         GameManager.ExitGame();
     }
+
+    public void OnResetProgression()
+    {
+        CheckpointManager.ResetProgression();
+    }
 }

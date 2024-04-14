@@ -13,6 +13,14 @@ public class MeleeEnemy : Enemy
             _animator.SetBool("IsAttacking", true);
             _elapsedTimeInAttackState += Time.deltaTime;
 
+            if (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
+            {
+                if (!GameManager.IsGameOver)
+                {
+                    SoundManager.PlaySoundAt(SoundManager.SoundBank.strikeSound, transform.position);
+                }
+            }
+
             if (_elapsedTimeInAttackState >= _animator.GetCurrentAnimatorStateInfo(0).length)
             {
                 GameManager.TriggerGameOver();

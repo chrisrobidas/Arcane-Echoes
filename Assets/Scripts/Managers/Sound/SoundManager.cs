@@ -167,9 +167,9 @@ public class SoundManager : MonoBehaviour
         soundEmitter.PlaySound(sound);
     }
 
-    public static void PlayMusic(AudioClip audioClip)
+    public static void PlayMusic(SoundBank.Sound audioClip)
     {
-        m_instance.m_musicAudioSource.clip = audioClip;
+        m_instance.m_musicAudioSource.clip = audioClip.clip;
         m_instance.m_musicAudioSource.loop = true;
         m_instance.m_musicAudioSource.Play();
     }   
