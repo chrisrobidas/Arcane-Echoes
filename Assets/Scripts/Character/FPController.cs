@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 gravityForce;
 
     private bool isGrounded;
-    private bool isCrouching;
+    //private bool isCrouching;
 
     private void Start()
     {
@@ -85,17 +85,17 @@ public class PlayerMovement : MonoBehaviour
         float crouching = playerInputsAction.PlayerMovement.Crouch.ReadValue<float>();
         float sprinting = playerInputsAction.PlayerMovement.Sprint.ReadValue<float>();
         float playerSpeedModifier = 1f;
-        isCrouching = false;
+        //isCrouching = false;
 
         if (crouching > 0f & sprinting == 0f & isGrounded)
         {
             playerSpeedModifier *= crouchSpeedMultiplier;
-            isCrouching = true;
+            //isCrouching = true;
         }
         if (crouching == 0f & sprinting > 0f & isGrounded)
         {
             playerSpeedModifier *= sprintSpeedMultiplier;
-            isCrouching = false;
+            //isCrouching = false;
         }
         moveSpeed = baseSpeed * playerSpeedModifier;
 
