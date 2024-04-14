@@ -5,11 +5,8 @@ public class EnemySummoner : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _enemies;
     [SerializeField] private GameObject _summonEffect;
-<<<<<<< HEAD
-=======
 
     private bool _isSummonDone;
->>>>>>> main
 
     private void Awake()
     {
