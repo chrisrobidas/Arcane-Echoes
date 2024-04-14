@@ -39,6 +39,8 @@ public class ObjectSummoning : MonoBehaviour
     private GameObject m_leftHandEffect;
     [SerializeField]
     private GameObject m_rightHandEffect;
+    [SerializeField]
+    private Transform m_summonCircleEmplacement;
     private Animator playerAnimator;
     // End Effects
 
@@ -110,6 +112,7 @@ public class ObjectSummoning : MonoBehaviour
     {
         if (m_highlightedObject != null & m_summonTimer <= 0f)
         {
+            Instantiate(m_invocationCircle, m_summonCircleEmplacement.position, Quaternion.identity);
             playerAnimator.SetTrigger("HoldTrigger");
             //m_invocationCircle.SetActive(true);
             m_highlightedObject.GetComponent<SummonableObject>().OnMouseHooverExit();
