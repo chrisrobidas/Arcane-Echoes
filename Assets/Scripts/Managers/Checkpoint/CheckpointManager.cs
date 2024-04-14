@@ -24,14 +24,11 @@ public class CheckpointManager : MonoBehaviour
         if (s_checkpointSaved == -1) 
         {
             Debug.Log("<b>[CheckpointManager]</b> No checkpoint saved");
-<<<<<<< Updated upstream
-=======
             // Activate tutorial
         }
         else
         {
             // Skip tutorial
->>>>>>> Stashed changes
         }
 #endif
     }
