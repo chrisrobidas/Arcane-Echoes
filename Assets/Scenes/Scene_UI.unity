@@ -866,7 +866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b84497df91e10940965d7c63bd184fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_menuBody: {fileID: 1004862700}
+  m_menuBody: {fileID: 598452317}
   m_firstSelectedGameObject: {fileID: 1729436910}
 --- !u!1 &154565730
 GameObject:
@@ -2477,37 +2477,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 432794573}
   m_CullTransparentMesh: 1
---- !u!1 &438402558
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 438402559}
-  m_Layer: 0
-  m_Name: SliderPanel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &438402559
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 438402558}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1193.5267, y: 602.7814, z: -7.344721}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &442990816
 GameObject:
   m_ObjectHideFlags: 0
@@ -9961,4 +9930,3 @@ SceneRoots:
   - {fileID: 2141036922}
   - {fileID: 158377323}
   - {fileID: 27822466}
-  - {fileID: 438402559}
