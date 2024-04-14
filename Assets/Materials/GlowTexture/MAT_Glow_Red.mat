@@ -32,7 +32,11 @@ Material:
     - _BaseMap:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         m_Texture: {fileID: 2800000, guid: d07a43c7f1af9fb4ebfd8fcff02fb9fc, type: 3}
+=======
+        m_Texture: {fileID: 0}
+>>>>>>> main
 =======
         m_Texture: {fileID: 0}
 >>>>>>> main
@@ -64,7 +68,11 @@ Material:
     - _MainTex:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         m_Texture: {fileID: 2800000, guid: d07a43c7f1af9fb4ebfd8fcff02fb9fc, type: 3}
+=======
+        m_Texture: {fileID: 0}
+>>>>>>> main
 =======
         m_Texture: {fileID: 0}
 >>>>>>> main

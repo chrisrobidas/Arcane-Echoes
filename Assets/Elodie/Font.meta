@@ -1,9 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 <<<<<<<< HEAD:Assets/Elodie/Font.meta
 guid: c97db1b6656e79c47bd8e31af96819aa
 ========
 guid: 518f2b8b610eb1f4f898af5547fcaea4
 >>>>>>>> main:Assets/Elodie/Animation.meta
+=======
+guid: c97db1b6656e79c47bd8e31af96819aa
+>>>>>>> main
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
