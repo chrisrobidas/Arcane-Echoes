@@ -25,6 +25,18 @@ public static class GameManager
         () => { m_gameStateMachine.ChangeState(EGameState.Game); });
     }
 
+    public static void EnableTutorial(bool enable)
+    {
+        if (enable)
+        {
+            m_gameStateMachine.AddState(EGameState.Tutorial);
+        }
+        else
+        {
+            m_gameStateMachine.RemoveState(EGameState.Tutorial);
+        }
+    }
+
     public static void PauseGame()
     {
         Time.timeScale = 0f;
