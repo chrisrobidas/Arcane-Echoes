@@ -14,6 +14,25 @@ public class SoundBank
         public float volume => m_volume;
         [SerializeField][Range(0, 1)] float m_volume = 1;
     }
+
+    public Sound mainMenuMusic => m_mainMenuMusic;
+    [SerializeField] private Sound m_mainMenuMusic;
+
+    public Sound gameMusic => m_gameMusic;
+    [SerializeField] private Sound m_gameMusic;
+
     public Sound impactSound => m_impactSound;
     [SerializeField] private Sound m_impactSound;
+
+    public Sound fireballImpactSound => m_fireballImpactSound;
+    [SerializeField] private Sound m_fireballImpactSound;
+
+    public Sound fireballSound => m_fireballSound;
+    [SerializeField] private Sound m_fireballSound;
+
+    public Sound enemySummonSound => m_enemySummonSound;
+    [SerializeField] private Sound m_enemySummonSound;
+
+    public Sound strikeSound => m_strikeSound;
+    [SerializeField] private Sound m_strikeSound;
 }
