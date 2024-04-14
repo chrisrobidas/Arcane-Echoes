@@ -39,5 +39,6 @@ public class RangedEnemy : Enemy
         GameObject projectile = Instantiate(_projectilePrefab);
         projectile.transform.position = _projectileSpawn.position;
         projectile.transform.LookAt(GameObject.FindWithTag("Player").transform.position);
+        projectile.GetComponent<Projectile>().Caster = gameObject;
     }
 }

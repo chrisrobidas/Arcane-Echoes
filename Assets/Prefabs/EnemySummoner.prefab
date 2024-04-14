@@ -94,4 +94,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48dafe085944b14288109a6eb1886f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 0}
+  _enemies: []
+  _summonEffect: {fileID: 3744133877081091469, guid: c255569eabb8beb4291caf0c66c24cb2,
+    type: 3}
