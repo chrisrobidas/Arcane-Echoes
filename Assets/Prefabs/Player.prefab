@@ -403,7 +403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_maxSummonableDistance: 30
-  m_SummonCoolDown: 2
+  m_SummonCoolDown: 1
   m_projectionForce: 1500
   m_rotationSpeed: 45
   m_summonableLayer:

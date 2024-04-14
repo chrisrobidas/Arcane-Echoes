@@ -111,7 +111,7 @@ public class ObjectSummoning : MonoBehaviour
         if (m_highlightedObject != null & m_summonTimer <= 0f)
         {
             playerAnimator.SetTrigger("HoldTrigger");
-            m_invocationCircle.SetActive(true);
+            //m_invocationCircle.SetActive(true);
             m_highlightedObject.GetComponent<SummonableObject>().OnMouseHooverExit();
             Vector3 l_scale = m_highlightedObject.transform.localScale;
             m_summonedObject = Instantiate(m_highlightedObject, m_objectSummonPoint.position, m_highlightedObject.transform.rotation);
