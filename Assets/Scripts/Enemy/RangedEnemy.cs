@@ -25,12 +25,8 @@ public class RangedEnemy : Enemy
         else
         {
             _elapsedTimeSinceLastProjectile = 0;
-
-            if (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
-            {
-                _animator.SetBool("IsAttacking", false);
-                StartChasing();
-            }
+            _animator.SetBool("IsAttacking", false);
+            StartChasing();
         }
     }
 
