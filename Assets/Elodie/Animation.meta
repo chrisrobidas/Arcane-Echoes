@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Materials/MetalTexture.meta
+guid: af924443a88ac4e4db5ee7819d052cd4
+========
 guid: 518f2b8b610eb1f4f898af5547fcaea4
+>>>>>>>> main:Assets/Elodie/Animation.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
