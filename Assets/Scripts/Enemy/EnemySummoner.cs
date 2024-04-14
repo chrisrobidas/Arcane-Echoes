@@ -1,19 +1,26 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySummoner : MonoBehaviour
 {
-    [SerializeField] private GameObject _enemy;
+    [SerializeField] private List<GameObject> _enemies;
 
     private void Awake()
     {
-        _enemy.SetActive(false);
+        foreach (var enemy in _enemies) 
+        {
+            enemy.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            _enemy.SetActive(true);
+            foreach (var enemy in _enemies)
+            {
+                enemy.SetActive(true);
+            }
         }
     }
 }
