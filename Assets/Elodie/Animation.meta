@@ -2,6 +2,7 @@ fileFormatVersion: 2
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<<< HEAD:Assets/Materials/BrickTexture/MV_MOYEN.mat.meta
 guid: d3b3bba01d7b89040b6aa6a66efc013b
 NativeFormatImporter:
@@ -23,6 +24,10 @@ guid: bb84199c84128e444ba3308a7f196da1
 <<<<<<<< HEAD:Assets/Materials/GlowTexture.meta
 guid: 7e276d869c6d3244ebcee519f6269469
 >>>>>>> main
+=======
+<<<<<<<< HEAD:Assets/Elodie/Font.meta
+guid: c97db1b6656e79c47bd8e31af96819aa
+>>>>>>> main
 ========
 guid: 518f2b8b610eb1f4f898af5547fcaea4
 >>>>>>>> main:Assets/Elodie/Animation.meta
@@ -31,6 +36,9 @@ DefaultImporter:
   externalObjects: {}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> main
+=======
 >>>>>>> main
 =======
 >>>>>>> main

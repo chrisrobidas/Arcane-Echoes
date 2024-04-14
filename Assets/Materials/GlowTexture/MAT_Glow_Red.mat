@@ -31,7 +31,11 @@ Material:
     m_TexEnvs:
     - _BaseMap:
 <<<<<<< HEAD
+<<<<<<< HEAD
         m_Texture: {fileID: 2800000, guid: d07a43c7f1af9fb4ebfd8fcff02fb9fc, type: 3}
+=======
+        m_Texture: {fileID: 0}
+>>>>>>> main
 =======
         m_Texture: {fileID: 0}
 >>>>>>> main
@@ -59,7 +63,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
 <<<<<<< HEAD
+<<<<<<< HEAD
         m_Texture: {fileID: 2800000, guid: d07a43c7f1af9fb4ebfd8fcff02fb9fc, type: 3}
+=======
+        m_Texture: {fileID: 0}
+>>>>>>> main
 =======
         m_Texture: {fileID: 0}
 >>>>>>> main
