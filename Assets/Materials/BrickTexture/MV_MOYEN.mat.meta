@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Materials/BrickTexture/MV_MOYEN.mat.meta
 guid: a8aeebab19b908449a9191bc4d7f9186
 NativeFormatImporter:
+========
+guid: 518f2b8b610eb1f4f898af5547fcaea4
+folderAsset: yes
+DefaultImporter:
+>>>>>>>> main:Assets/Elodie/Animation.meta
   externalObjects: {}
   mainObjectFileID: 2100000
   userData: 

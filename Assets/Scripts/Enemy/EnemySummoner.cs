@@ -5,6 +5,11 @@ public class EnemySummoner : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _enemies;
     [SerializeField] private GameObject _summonEffect;
+<<<<<<< HEAD
+=======
+
+    private bool _isSummonDone;
+>>>>>>> main
 
     private void Awake()
     {
@@ -16,6 +21,9 @@ public class EnemySummoner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (_isSummonDone)
+            return;
+
         if (other.CompareTag("Player"))
         {
             foreach (var enemy in _enemies)
@@ -24,5 +32,7 @@ public class EnemySummoner : MonoBehaviour
                 Instantiate(_summonEffect, enemy.transform.position, enemy.transform.rotation, enemy.transform);
             }
         }
+
+        _isSummonDone = true;
     }
 }

@@ -1,0 +1,510 @@
+fileFormatVersion: 2
+guid: 0a1ad873fde1ca5458b25282d14926bf
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: T_Fire_FullColor_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 613.3334
+        width: 153.33333
+        height: 306.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36bef7f02e790a842a70a059f13b8580
+      internalID: 386908088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T_Fire_FullColor_1
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 613.3334
+        width: 153.33333
+        height: 306.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6dd3b18fe495e84d8881eecbc4137a0
+      internalID: 235537951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T_Fire_FullColor_2
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 613.3334
+        width: 153.33333
+        height: 306.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc8e5ad5be9264747900250b53669e53
+      internalID: 79381657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T_Fire_FullColor_3
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 613.3334
+        width: 153.33333
+        height: 306.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3011e281076aa8745b4b9935b6b3a67f
+      internalID: -241418451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T_Fire_FullColor_4
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 613.3334
+        width: 153.33333
+        height: 306.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84c4703c495d2114eaff717dd38c4cdf
+      internalID: 1040527111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T_Fire_FullColor_5
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 613.3334
+        width: 153.33333
+        height: 306.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6ba90e5246764c45980751915d1604b
+      internalID: -1834426170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T_Fire_FullColor_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 307.33334
+        width: 153.33333
+        height: 306.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a88b8c2d2875804f916695a61cc66b8
+      internalID: 123393806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T_Fire_FullColor_7
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 307.33334
+        width: 153.33333
+        height: 306.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 884a5850b14b3eb439d3e2440a8ade15
+      internalID: -1746692908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T_Fire_FullColor_8
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 307.33334
+        width: 153.33333
+        height: 306.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62bf361f2667ee64e8b4c0430abbaba9
+      internalID: 523728586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T_Fire_FullColor_9
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 307.33334
+        width: 153.33333
+        height: 306.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7eeddd9cc81d0b948aa5d11a77578b1f
+      internalID: 574823152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T_Fire_FullColor_10
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 307.33334
+        width: 153.33333
+        height: 306.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20b736166ff66154b9f34cb38b0878c4
+      internalID: 743609347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T_Fire_FullColor_11
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 307.33334
+        width: 153.33333
+        height: 306.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ffc71998c845644287b0c249491496b
+      internalID: 2056021359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T_Fire_FullColor_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1.3333435
+        width: 153.33333
+        height: 306.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4085e3068a31dcd4db676dae3f60d99c
+      internalID: 857382766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T_Fire_FullColor_13
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 1.3333435
+        width: 153.33333
+        height: 306.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 599244074117cff498f950fb66aa23d0
+      internalID: -456754994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T_Fire_FullColor_14
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 1.3333435
+        width: 153.33333
+        height: 306.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3cd0e2fd2cb65745ae377c08b2fb8ec
+      internalID: -946026470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T_Fire_FullColor_15
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 1.3333435
+        width: 153.33333
+        height: 306.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19304eafc5157984d9cb91a08ac4a533
+      internalID: 89292280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T_Fire_FullColor_16
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 1.3333435
+        width: 153.33333
+        height: 306.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbe91fd85d728824a979d401305cbe8a
+      internalID: 1263338407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T_Fire_FullColor_17
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 1.3333435
+        width: 153.33333
+        height: 306.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fda7215b3386764684f4a58b5acda27
+      internalID: 819384740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 0d5752fae3eb09a409419a4ca7d65170
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      T_Fire_FullColor_0: 386908088
+      T_Fire_FullColor_1: 235537951
+      T_Fire_FullColor_10: 743609347
+      T_Fire_FullColor_11: 2056021359
+      T_Fire_FullColor_12: 857382766
+      T_Fire_FullColor_13: -456754994
+      T_Fire_FullColor_14: -946026470
+      T_Fire_FullColor_15: 89292280
+      T_Fire_FullColor_16: 1263338407
+      T_Fire_FullColor_17: 819384740
+      T_Fire_FullColor_2: 79381657
+      T_Fire_FullColor_3: -241418451
+      T_Fire_FullColor_4: 1040527111
+      T_Fire_FullColor_5: -1834426170
+      T_Fire_FullColor_6: 123393806
+      T_Fire_FullColor_7: -1746692908
+      T_Fire_FullColor_8: 523728586
+      T_Fire_FullColor_9: 574823152
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
