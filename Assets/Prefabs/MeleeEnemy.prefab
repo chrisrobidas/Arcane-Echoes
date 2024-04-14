@@ -1547,7 +1547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ViewRadius: 20
-  ViewAngle: 63
+  ViewAngle: 188
   _drawFieldOfView: 1
   VisibleTargets: []
   _targetMask:
@@ -1572,7 +1572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a48df03720038d4478ce148174cfec33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ViewRadius: 4
+  ViewRadius: 2
   ViewAngle: 360
   _drawFieldOfView: 1
   VisibleTargets: []
