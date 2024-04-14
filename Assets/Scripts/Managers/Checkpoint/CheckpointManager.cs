@@ -6,8 +6,6 @@ public class CheckpointManager : MonoBehaviour
     public static readonly string s_checkpointPlayerPrefName = "Checkpoint";
     private static int s_checkpointSaved;
 
-    [SerializeField] GameObject m_player;
-
     #region Initialization
     private void Awake()
     {
@@ -21,18 +19,6 @@ public class CheckpointManager : MonoBehaviour
         }
 
         s_checkpointSaved = PlayerPrefs.GetInt(s_checkpointPlayerPrefName, -1);
-
-#if UNITY_EDITOR
-        if (s_checkpointSaved == -1) 
-        {
-            Debug.Log("<b>[CheckpointManager]</b> No checkpoint saved");
-            // Activate tutorial
-        }
-        else
-        {
-            // Skip tutorial
-        }
-#endif
     }
 
     private void OnEnable()
@@ -57,7 +43,7 @@ public class CheckpointManager : MonoBehaviour
         if (checkpoint != null && s_checkpointSaved == checkpoint.ID)
         {
             Debug.Log($"<b>[CheckpointManager]</b> Spawning player at checkpoint {checkpoint.ID}");
-            checkpoint.SpawnPlayer(m_player);
+            checkpoint.SpawnPlayer();
         }
     }
 
@@ -72,7 +58,11 @@ public class CheckpointManager : MonoBehaviour
 
     public static void ResetProgression()
     {
+#if UNITY_EDITOR
+        Debug.Log($"<b>[CheckpointManager]</b> Reset progression");
+#endif
         PlayerPrefs.SetInt(s_checkpointPlayerPrefName, -1);
+        s_checkpointSaved = PlayerPrefs.GetInt(s_checkpointPlayerPrefName, -1);
     }
 
 #if UNITY_EDITOR

@@ -481,9 +481,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundBank:
+    m_mainMenuMusic:
+      _clip: {fileID: 0}
+      m_volume: 1
+    m_gameMusic:
+      _clip: {fileID: 0}
+      m_volume: 1
     m_impactSound:
       _clip: {fileID: 8300000, guid: 49c01fa41430b6845805fe50b270463d, type: 3}
       m_volume: 0.5
+    m_fireballImpactSound:
+      _clip: {fileID: 0}
+      m_volume: 1
+    m_fireballSound:
+      _clip: {fileID: 0}
+      m_volume: 1
+    m_enemySummonSound:
+      _clip: {fileID: 0}
+      m_volume: 1
+    m_strikeSound:
+      _clip: {fileID: 0}
+      m_volume: 1
+    m_deathSound:
+      _clip: {fileID: 0}
+      m_volume: 1
   m_soundEmitterPrefab: {fileID: 7049335956136127007, guid: 1165632ff9caadb42868cdb7db8707c8,
     type: 3}
   m_initialPoolCapacity: 10
@@ -607,7 +628,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1244249959
 Transform:
   m_ObjectHideFlags: 0
@@ -635,8 +656,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e824d74355b94f145ae5f2c787e2920d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_player: {fileID: 6208413532667280692, guid: 6d7831e395b3dc7418acff9111eb7a12,
-    type: 3}
 --- !u!1 &1394835750
 GameObject:
   m_ObjectHideFlags: 0

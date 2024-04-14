@@ -33,7 +33,7 @@ public abstract class GameStateResponsiveMenu : MonoBehaviour
 
     public virtual void OnGameStateExit(EGameState gameState)
     {
-        if (gameState == gameStateMonitored)
+        if (gameStateMonitored.HasFlag(gameState))
         {
             m_menuBody.SetActive(false);
         }
