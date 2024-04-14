@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -50,12 +47,6 @@ public class PlayerMovement : MonoBehaviour
     private float gravityConstant = -9.81f;
     Vector3 gravityForce;
 
-    // Defaults settings
-    private float defaultControllerHeight;
-    private float defaultControllerCenterY;
-    private float defaultCameraPosY;
-    private float defaultObjectSummonPosY;
-
     private bool isGrounded;
     private bool isCrouching;
 
@@ -64,11 +55,6 @@ public class PlayerMovement : MonoBehaviour
         playerInputsAction = new PlayerInputsAction();
         playerInputsAction.PlayerMovement.Enable();
         playerInputsAction.PlayerMovement.Jump.performed += Jump;
-
-        defaultControllerHeight = controller.height;
-        defaultControllerCenterY = controller.center.y;
-        defaultCameraPosY = mainCamera.position.y;
-        defaultObjectSummonPosY = objectsSummonPoint.position.y;
     }
 
     // Update is called once per frame
@@ -112,14 +98,6 @@ public class PlayerMovement : MonoBehaviour
             isCrouching = false;
         }
         moveSpeed = baseSpeed * playerSpeedModifier;
-
-        if (isCrouching)
-        {
-            controller.height = 1f;
-            controller.center.Set(controller.center.x, -0.5f, controller.center.z);
-            mainCamera.position = new Vector3 (mainCamera.position.x, -0.25f, mainCamera.position.z);
-            //objectsSummonPoint.position = new Vector3(objectsSummonPoint.position.x, )
-        }
 
         Vector3 direction = transform.right * transversalMove + transform.forward * longitudinalMove;
         controller.Move(direction * moveSpeed * Time.deltaTime);
