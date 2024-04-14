@@ -15,8 +15,8 @@ TagManager:
   - MovingObject
   - Player
   - Obstacle
-  - 
-  - 
+  - Projectile
+  - Enemy
   - 
   - 
   - 

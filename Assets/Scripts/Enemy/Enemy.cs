@@ -84,6 +84,9 @@ public abstract class Enemy : MonoBehaviour
 
     private void Wander()
     {
+        if (_waypointPath == null)
+            return;
+
         _agent.stoppingDistance = 0.1f;
         Waypoint targetWaypoint = _waypointPath.GetWaypoint(_targetWaypointIndex).GetComponent<Waypoint>();
         _agent.SetDestination(targetWaypoint.transform.position);
