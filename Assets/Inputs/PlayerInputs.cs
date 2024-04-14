@@ -176,6 +176,15 @@ public partial class @PlayerInputsAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Rotate"",
+                    ""type"": ""Value"",
+                    ""id"": ""d9e18ecd-bb53-4577-871c-8a8d7bf5489a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -200,6 +209,39 @@ public partial class @PlayerInputsAction: IInputActionCollection2, IDisposable
                     ""action"": ""Project"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""ad8733c0-ca8a-4872-9f31-0408b18d3b12"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""65eb9620-8413-483f-9ddd-8ce96bd28bf9"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""82dc15b9-2c8c-49c3-9587-33e4449b3c3e"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -216,6 +258,7 @@ public partial class @PlayerInputsAction: IInputActionCollection2, IDisposable
         m_PlayerSummoning = asset.FindActionMap("PlayerSummoning", throwIfNotFound: true);
         m_PlayerSummoning_Summon = m_PlayerSummoning.FindAction("Summon", throwIfNotFound: true);
         m_PlayerSummoning_Project = m_PlayerSummoning.FindAction("Project", throwIfNotFound: true);
+        m_PlayerSummoning_Rotate = m_PlayerSummoning.FindAction("Rotate", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -349,12 +392,14 @@ public partial class @PlayerInputsAction: IInputActionCollection2, IDisposable
     private List<IPlayerSummoningActions> m_PlayerSummoningActionsCallbackInterfaces = new List<IPlayerSummoningActions>();
     private readonly InputAction m_PlayerSummoning_Summon;
     private readonly InputAction m_PlayerSummoning_Project;
+    private readonly InputAction m_PlayerSummoning_Rotate;
     public struct PlayerSummoningActions
     {
         private @PlayerInputsAction m_Wrapper;
         public PlayerSummoningActions(@PlayerInputsAction wrapper) { m_Wrapper = wrapper; }
         public InputAction @Summon => m_Wrapper.m_PlayerSummoning_Summon;
         public InputAction @Project => m_Wrapper.m_PlayerSummoning_Project;
+        public InputAction @Rotate => m_Wrapper.m_PlayerSummoning_Rotate;
         public InputActionMap Get() { return m_Wrapper.m_PlayerSummoning; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -370,6 +415,9 @@ public partial class @PlayerInputsAction: IInputActionCollection2, IDisposable
             @Project.started += instance.OnProject;
             @Project.performed += instance.OnProject;
             @Project.canceled += instance.OnProject;
+            @Rotate.started += instance.OnRotate;
+            @Rotate.performed += instance.OnRotate;
+            @Rotate.canceled += instance.OnRotate;
         }
 
         private void UnregisterCallbacks(IPlayerSummoningActions instance)
@@ -380,6 +428,9 @@ public partial class @PlayerInputsAction: IInputActionCollection2, IDisposable
             @Project.started -= instance.OnProject;
             @Project.performed -= instance.OnProject;
             @Project.canceled -= instance.OnProject;
+            @Rotate.started -= instance.OnRotate;
+            @Rotate.performed -= instance.OnRotate;
+            @Rotate.canceled -= instance.OnRotate;
         }
 
         public void RemoveCallbacks(IPlayerSummoningActions instance)
@@ -408,5 +459,6 @@ public partial class @PlayerInputsAction: IInputActionCollection2, IDisposable
     {
         void OnSummon(InputAction.CallbackContext context);
         void OnProject(InputAction.CallbackContext context);
+        void OnRotate(InputAction.CallbackContext context);
     }
 }

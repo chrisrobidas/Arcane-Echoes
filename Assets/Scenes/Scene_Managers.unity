@@ -391,19 +391,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundBank:
-    _swapColorSound:
-      _clip: {fileID: 0}
-      _mixerGroup: {fileID: 0}
-    _lockedColorSound:
-      _clip: {fileID: 0}
-      _mixerGroup: {fileID: 0}
-    _translationSound:
-      _clip: {fileID: 0}
-      _mixerGroup: {fileID: 0}
-    _endlevelSound:
-      _clip: {fileID: 0}
-      _mixerGroup: {fileID: 0}
+    m_impactSound:
+      _clip: {fileID: 8300000, guid: 49c01fa41430b6845805fe50b270463d, type: 3}
+      m_volume: 0.5
+  m_soundEmitterPrefab: {fileID: 7049335956136127007, guid: 1165632ff9caadb42868cdb7db8707c8,
+    type: 3}
+  m_initialPoolCapacity: 10
+  m_maxPoolSize: 10
+  m_collectionChecks: 1
   audioMixer: {fileID: 24100000, guid: 170546c680527ac4f9a1a293e4a5e96f, type: 2}
+  m_customSpacializationValue: 0.9
   m_masterVolume: 1
   m_gameVolume: 1
   m_musicVolume: 1
@@ -416,9 +413,10 @@ AudioSource:
   m_GameObject: {fileID: 1001721494}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  OutputAudioMixerGroup: {fileID: 3487788513374575359, guid: 170546c680527ac4f9a1a293e4a5e96f,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 49c01fa41430b6845805fe50b270463d, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
