@@ -37,6 +37,18 @@ public static class GameManager
         }
     }
 
+    public static void PauseResumeGame()
+    {
+        if (IsGamePaused)
+        {
+            ResumeGame();
+        }
+        else
+        {
+            PauseGame();
+        }
+    }
+
     public static void PauseGame()
     {
         Time.timeScale = 0f;
