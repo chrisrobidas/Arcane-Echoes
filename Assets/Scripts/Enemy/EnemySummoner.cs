@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemySummoner : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _enemies;
+    [SerializeField] private GameObject _summonEffect;
 
     private void Awake()
     {
@@ -20,6 +21,7 @@ public class EnemySummoner : MonoBehaviour
             foreach (var enemy in _enemies)
             {
                 enemy.SetActive(true);
+                Instantiate(_summonEffect, enemy.transform.position, enemy.transform.rotation, enemy.transform);
             }
         }
     }
