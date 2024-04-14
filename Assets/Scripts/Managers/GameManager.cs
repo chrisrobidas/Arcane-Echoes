@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public static class GameManager
 {
@@ -13,6 +14,7 @@ public static class GameManager
 
     public static void OpenMainMenu()
     {
+        SoundManager.PlayMusic(SoundManager.SoundBank.mainMenuMusic);
         m_gameStateMachine.RemoveState(EGameState.Pause);
         SceneLoader.LoadScenes(EScenes.MainMenuBackground, EScenes.MainMenuBackground | EScenes.UI, false,
         () => { m_gameStateMachine.ChangeState(EGameState.MainMenu); });
@@ -20,6 +22,7 @@ public static class GameManager
 
     public static void PlayGame()
     {
+        SoundManager.PlayMusic(SoundManager.SoundBank.gameMusic);
         m_gameStateMachine.RemoveState(EGameState.Pause);
         SceneLoader.LoadScenes(EScenes.Game, EScenes.Game | EScenes.UI, false,
         () => { m_gameStateMachine.ChangeState(EGameState.Game); });

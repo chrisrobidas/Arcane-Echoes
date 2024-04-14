@@ -19,6 +19,7 @@ public class Projectile : MonoBehaviour
         if (_elapsedTime > _lifeTime)
         {
             Instantiate(_destroyEffect, gameObject.transform.position, gameObject.transform.rotation, null);
+            SoundManager.PlaySoundAt(SoundManager.SoundBank.fireballImpactSound, gameObject.transform.position);
             Destroy(gameObject);
         }
     }
@@ -26,6 +27,7 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Instantiate(_destroyEffect, gameObject.transform.position, gameObject.transform.rotation, null);
+        SoundManager.PlaySoundAt(SoundManager.SoundBank.fireballImpactSound, gameObject.transform.position);
         Destroy(gameObject);
 
         if (other.CompareTag("Enemy") && Caster != other.gameObject)
