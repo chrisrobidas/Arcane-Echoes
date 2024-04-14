@@ -37,6 +37,20 @@ public static class GameManager
         }
     }
 
+    public static void EnableTutorialFreeze(bool enable)
+    {
+        if (enable)
+        {
+            Time.timeScale = 0f;
+            m_gameStateMachine.AddState(EGameState.TutorialFreeze);
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            m_gameStateMachine.RemoveState(EGameState.TutorialFreeze);
+        }
+    }
+
     public static void PauseGame()
     {
         Time.timeScale = 0f;

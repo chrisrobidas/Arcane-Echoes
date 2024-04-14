@@ -5,7 +5,7 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
     public int ID => m_ID;
-    [SerializeField] int m_ID;
+    [SerializeField] [Min(0)] int m_ID;
 
     private string m_playerTag = "Player";
 
@@ -15,11 +15,17 @@ public class Checkpoint : MonoBehaviour
     private void Start()
     {
         Register?.Invoke(this);
+#if !UNITY_EDITOR
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
+#endif
     }
 
     public void SpawnPlayer()
     {
-        Debug.Log("<color=red><b>PLACEHOLDER METHOD</b> (CheckPoint.SpawnPlayer)</color>");
+        Debug.Log("<color=red><b>SPAWN PLAYER</b> (placeholder)</color>");
     }
 
     private void OnTriggerEnter(Collider other)

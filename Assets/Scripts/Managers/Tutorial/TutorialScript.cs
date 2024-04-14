@@ -11,6 +11,7 @@ public class TutorialScript : ScriptableObject
     {
         public string Title;
         [TextArea(3,10)] public string Description;
+        public TutorialTrigger tutorialTrigger;
     }
     public List<TutorialScriptStep> Steps;
 }

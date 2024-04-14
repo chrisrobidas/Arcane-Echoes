@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CheckpointManager : MonoBehaviour
@@ -5,6 +6,7 @@ public class CheckpointManager : MonoBehaviour
     private static CheckpointManager m_instance;
     public static readonly string s_checkpointPlayerPrefName = "Checkpoint";
     private static int s_checkpointSaved;
+    private static bool s_checkpointInitialized => !(s_checkpointSaved <= -1);
 
     #region Initialization
     private void Awake()
@@ -21,15 +23,8 @@ public class CheckpointManager : MonoBehaviour
         s_checkpointSaved = PlayerPrefs.GetInt(s_checkpointPlayerPrefName, -1);
 
 #if UNITY_EDITOR
-        if (s_checkpointSaved == -1) 
-        {
-            Debug.Log("<b>[CheckpointManager]</b> No checkpoint saved");
-            // Activate tutorial
-        }
-        else
-        {
-            // Skip tutorial
-        }
+        string checkpointLog = s_checkpointInitialized ? "<b>[CheckpointManager]</b> No checkpoint saved, enabling tutorial" : $"<b>[CheckpointManager]</b> Found checkpoint saved (ID {s_checkpointSaved})";
+        Debug.Log(checkpointLog);
 #endif
     }
 
@@ -37,15 +32,25 @@ public class CheckpointManager : MonoBehaviour
     {
         Checkpoint.Register += OnRegisterCheckpoint;
         Checkpoint.Activate += OnActivateCheckpoint;
+        GameManager.GameStateMachine.OnStateEnter += OnGameStateEnter;
     }
 
     private void OnDisable()
     {
         Checkpoint.Register -= OnRegisterCheckpoint;
         Checkpoint.Activate -= OnActivateCheckpoint;
+        GameManager.GameStateMachine.OnStateEnter -= OnGameStateEnter;
     }
 
     #endregion
+
+    private void OnGameStateEnter(EGameState state)
+    {
+        if (state == EGameState.Game)
+        {
+            GameManager.EnableTutorial(!s_checkpointInitialized);
+        }
+    }
 
     private void OnRegisterCheckpoint(Checkpoint checkpoint)
     {
