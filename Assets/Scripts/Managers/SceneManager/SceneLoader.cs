@@ -25,7 +25,7 @@ public class SceneLoader : MonoBehaviour
             scenesToLoad |= activeScene;
         }
 #if UNITY_EDITOR
-        Debug.Log($"Scenes requested : {scenesToLoad}");
+        Debug.Log($"<b>[SceneLoader]</b> Scene load requested : ({scenesToLoad})");
 #endif
         // Get scenes already loaded and unused
         EScenes loadedScenes = 0;
@@ -41,9 +41,7 @@ public class SceneLoader : MonoBehaviour
             }
         }
 #if UNITY_EDITOR
-        Debug.Log($"        Scenes already loaded : {loadedScenes}");
-        Debug.Log($"        Scenes unused : {unusedScenes}");
-        Debug.Log($"        Scenes to load : {scenesToLoad}");
+        Debug.Log($"<b>[SceneLoader]</b> Info on scenes : loaded ({loadedScenes}), unused ({unusedScenes}), needed ({scenesToLoad})");
 #endif
         if (unusedScenes != EScenes.None)
         {
@@ -63,7 +61,7 @@ public class SceneLoader : MonoBehaviour
             {
                 scenesToLoad &= ~value;
 #if UNITY_EDITOR
-                Debug.Log($"                Skipping scenes duplicate : {value}");
+                Debug.Log($"<b>[SceneLoader]</b> Skipping scene duplicate reload ({value})");
 #endif
                 continue;
             }
