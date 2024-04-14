@@ -56,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
     private float defaultCameraPosY;
     private float defaultObjectSummonPosY;
 
+    private bool isGrounded;
     private bool isCrouching;
 
     private void Start()
@@ -75,12 +76,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Physics.CheckSphere(groundCheck.position, groundDistanceCheck, groundMask) & gravityForce.y < 0f)
         {
+            isGrounded = true;
             Move();
             gravityForce.y = - 0.5f;
         }
         else
         {
-            if(airControl)
+            isGrounded = false;
+            if (airControl)
             {
                 Move();
             }
@@ -96,24 +99,26 @@ public class PlayerMovement : MonoBehaviour
         float crouching = playerInputsAction.PlayerMovement.Crouch.ReadValue<float>();
         float sprinting = playerInputsAction.PlayerMovement.Sprint.ReadValue<float>();
         float playerSpeedModifier = 1f;
+        isCrouching = false;
 
-        if (crouching > 0f & sprinting == 0f)
+        if (crouching > 0f & sprinting == 0f & isGrounded)
         {
             playerSpeedModifier *= crouchSpeedMultiplier;
+            isCrouching = true;
         }
-        if (crouching == 0f & sprinting > 0f)
+        if (crouching == 0f & sprinting > 0f & isGrounded)
         {
             playerSpeedModifier *= sprintSpeedMultiplier;
+            isCrouching = false;
         }
         moveSpeed = baseSpeed * playerSpeedModifier;
 
-        if (crouching > 0)
+        if (isCrouching)
         {
-            isCrouching = true;
-        }
-        else
-        {
-            isCrouching = false;
+            controller.height = 1f;
+            controller.center.Set(controller.center.x, -0.5f, controller.center.z);
+            mainCamera.position = new Vector3 (mainCamera.position.x, -0.25f, mainCamera.position.z);
+            //objectsSummonPoint.position = new Vector3(objectsSummonPoint.position.x, )
         }
 
         Vector3 direction = transform.right * transversalMove + transform.forward * longitudinalMove;
@@ -133,6 +138,5 @@ public class PlayerMovement : MonoBehaviour
     {
         playerInputsAction.PlayerMovement.Jump.performed -= Jump;
         playerInputsAction.PlayerMovement.Disable();
-
     }
 }
