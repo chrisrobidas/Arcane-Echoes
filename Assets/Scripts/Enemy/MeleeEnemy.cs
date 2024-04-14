@@ -4,6 +4,8 @@ public class MeleeEnemy : Enemy
 {
     private float _elapsedTimeInAttackState;
 
+    private bool _playerDied;
+
     public override void Attack()
     {
         LookAtPlayer();
@@ -15,11 +17,15 @@ public class MeleeEnemy : Enemy
 
             if (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
             {
-                SoundManager.PlaySoundAt(SoundManager.SoundBank.strikeSound, transform.position);
+                if (!_playerDied)
+                {
+                    SoundManager.PlaySoundAt(SoundManager.SoundBank.strikeSound, transform.position);
+                }
             }
 
             if (_elapsedTimeInAttackState >= _animator.GetCurrentAnimatorStateInfo(0).length)
             {
+                _playerDied = true;
                 GameManager.TriggerGameOver();
             }
         }
