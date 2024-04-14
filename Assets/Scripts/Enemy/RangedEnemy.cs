@@ -25,12 +25,8 @@ public class RangedEnemy : Enemy
         else
         {
             _elapsedTimeSinceLastProjectile = 0;
-
-            if (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
-            {
-                _animator.SetBool("IsAttacking", false);
-                StartChasing();
-            }
+            _animator.SetBool("IsAttacking", false);
+            StartChasing();
         }
     }
 
@@ -39,5 +35,7 @@ public class RangedEnemy : Enemy
         GameObject projectile = Instantiate(_projectilePrefab);
         projectile.transform.position = _projectileSpawn.position;
         projectile.transform.LookAt(GameObject.FindWithTag("Player").transform.position);
+        projectile.GetComponent<Projectile>().Caster = gameObject;
+        SoundManager.PlaySoundAt(SoundManager.SoundBank.fireballSound, _projectileSpawn.position);
     }
 }

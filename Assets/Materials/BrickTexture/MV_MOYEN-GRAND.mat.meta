@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Materials/BrickTexture/MV_MOYEN-GRAND.mat.meta
+guid: 5b85c2af703e3ee448046556d092d2fc
+NativeFormatImporter:
+========
+guid: 0f674ddc460511f4c83f03af329f001a
+PrefabImporter:
+>>>>>>>> main:Assets/Meshes/Barrier.prefab.meta
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

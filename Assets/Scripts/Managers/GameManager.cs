@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public static class GameManager
 {
@@ -11,8 +12,11 @@ public static class GameManager
 
     public static bool IsGamePaused => m_gameStateMachine.GameState.HasFlag(EGameState.Pause);
 
+    public static bool IsGameOver;
+
     public static void OpenMainMenu()
     {
+        SoundManager.PlayMusic(SoundManager.SoundBank.mainMenuMusic);
         m_gameStateMachine.RemoveState(EGameState.Pause);
         SceneLoader.LoadScenes(EScenes.MainMenuBackground, EScenes.MainMenuBackground | EScenes.UI, false,
         () => { m_gameStateMachine.ChangeState(EGameState.MainMenu); });
@@ -20,12 +24,39 @@ public static class GameManager
 
     public static void PlayGame()
     {
-#if UNITY_EDITOR
-        Debug.Log("Starting game");
-#endif
+        SoundManager.PlayMusic(SoundManager.SoundBank.gameMusic);
         m_gameStateMachine.RemoveState(EGameState.Pause);
         SceneLoader.LoadScenes(EScenes.Game, EScenes.Game | EScenes.UI, false,
         () => { m_gameStateMachine.ChangeState(EGameState.Game); });
+    }
+
+    public static void RestartGame()
+    {
+        SceneLoader.LoadScenes(EScenes.Game, EScenes.Game, true);
+    }
+
+    public static void EnableTutorial(bool enable)
+    {
+        if (enable)
+        {
+            m_gameStateMachine.AddState(EGameState.Tutorial);
+        }
+        else
+        {
+            m_gameStateMachine.RemoveState(EGameState.Tutorial);
+        }
+    }
+
+    public static void PauseResumeGame()
+    {
+        if (IsGamePaused)
+        {
+            ResumeGame();
+        }
+        else
+        {
+            PauseGame();
+        }
     }
 
     public static void PauseGame()
@@ -62,24 +93,23 @@ public static class GameManager
 
     public static void TriggerVictory()
     {
-#if UNITY_EDITOR
-        Debug.Log("Victory !");
-#endif
         m_gameStateMachine.ChangeState(EGameState.Victory);
     }
 
     public static void TriggerGameOver()
     {
-#if UNITY_EDITOR
-        Debug.Log("GameOver !");
-#endif
+        if (!IsGameOver)
+        {
+            SoundManager.PlaySound(SoundManager.SoundBank.deathSound);
+        }
+
+        IsGameOver = true;
         m_gameStateMachine.ChangeState(EGameState.GameOver);
     }
 
     public static void ExitGame()
     {
 #if UNITY_EDITOR
-        Debug.Log("Quitting game");
         EditorApplication.ExitPlaymode();
 #else
         Application.Quit();
