@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class GameStateDebugger : MonoBehaviour
 {
+#if UNITY_EDITOR
     private void OnEnable()
     {
         GameManager.GameStateMachine.OnStateEnter += OnGameStateEnter;
@@ -26,4 +27,5 @@ public class GameStateDebugger : MonoBehaviour
     {
         Debug.Log($"GameState exited {gameState}");
     }
+#endif
 }
