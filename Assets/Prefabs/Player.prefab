@@ -413,6 +413,8 @@ MonoBehaviour:
   m_objectHoldPoint: {fileID: 7764990425054809423}
   m_sPointForwardDistance: 0
   m_invocationCircle: {fileID: 5150874744621941871}
+  m_leftHandEffect: {fileID: 3919772526655355223}
+  m_rightHandEffect: {fileID: 7345339507544171519}
 --- !u!1 &8874944801920209139
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,6 +537,12 @@ PrefabInstance:
 --- !u!4 &6216094336528913796 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5862613817031353211, guid: b35b7e5efb0b75a43946378e6ff30bf9,
+    type: 3}
+  m_PrefabInstance: {fileID: 511212338757302015}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7345339507544171519 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7131401307255788800, guid: b35b7e5efb0b75a43946378e6ff30bf9,
     type: 3}
   m_PrefabInstance: {fileID: 511212338757302015}
   m_PrefabAsset: {fileID: 0}
@@ -759,6 +767,12 @@ PrefabInstance:
 --- !u!4 &418333217812057900 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5862613817031353211, guid: b35b7e5efb0b75a43946378e6ff30bf9,
+    type: 3}
+  m_PrefabInstance: {fileID: 6093941959705783383}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3919772526655355223 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7131401307255788800, guid: b35b7e5efb0b75a43946378e6ff30bf9,
     type: 3}
   m_PrefabInstance: {fileID: 6093941959705783383}
   m_PrefabAsset: {fileID: 0}

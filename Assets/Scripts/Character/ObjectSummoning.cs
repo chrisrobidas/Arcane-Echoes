@@ -33,9 +33,13 @@ public class ObjectSummoning : MonoBehaviour
 
     // Effects
     [Header("Effects")]
-    private Animator playerAnimator;
     [SerializeField]
     private GameObject m_invocationCircle;
+    [SerializeField]
+    private GameObject m_leftHandEffect;
+    [SerializeField]
+    private GameObject m_rightHandEffect;
+    private Animator playerAnimator;
     // End Effects
 
     private PlayerInputsAction m_playerInputsAction;
