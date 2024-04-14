@@ -57,7 +57,7 @@ public class CheckpointManager : MonoBehaviour
         if (checkpoint != null && s_checkpointSaved == checkpoint.ID)
         {
             Debug.Log($"<b>[CheckpointManager]</b> Spawning player at checkpoint {checkpoint.ID}");
-            checkpoint.SpawnPlayer();
+            checkpoint.SpawnPlayer(m_player);
         }
     }
 
