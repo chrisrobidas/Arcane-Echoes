@@ -1,6 +1,7 @@
 fileFormatVersion: 2
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<<< HEAD:Assets/Materials/BrickTexture/MV_MOYEN-GRAND.mat.meta
 guid: 8a1502cf8cd88d54e92dc99059342e2f
 NativeFormatImporter:
@@ -10,6 +11,11 @@ PrefabImporter:
 >>>>>>>> main:Assets/Meshes/Barrier.prefab.meta
   externalObjects: {}
   mainObjectFileID: 2100000
+=======
+guid: 0f674ddc460511f4c83f03af329f001a
+PrefabImporter:
+  externalObjects: {}
+>>>>>>> main
 =======
 guid: 0f674ddc460511f4c83f03af329f001a
 PrefabImporter:
