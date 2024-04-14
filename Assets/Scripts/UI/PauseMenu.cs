@@ -13,7 +13,7 @@ public class PauseMenu : GameStateResponsiveMenu
 
     public void OnRestartButton()
     {
-        GameManager.PlayGame();
+        GameManager.RestartGame();
     }
 
     public void OnSettingsButton()

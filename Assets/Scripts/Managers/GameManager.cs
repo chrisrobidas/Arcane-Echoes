@@ -25,6 +25,11 @@ public static class GameManager
         () => { m_gameStateMachine.ChangeState(EGameState.Game); });
     }
 
+    public static void RestartGame()
+    {
+        SceneLoader.LoadScenes(EScenes.Game, EScenes.Game, true);
+    }
+
     public static void EnableTutorial(bool enable)
     {
         if (enable)

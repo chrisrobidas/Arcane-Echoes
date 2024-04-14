@@ -6,6 +6,8 @@ public class CheckpointManager : MonoBehaviour
     public static readonly string s_checkpointPlayerPrefName = "Checkpoint";
     private static int s_checkpointSaved;
 
+    [SerializeField] GameObject m_player;
+
     #region Initialization
     private void Awake()
     {
