@@ -112,7 +112,7 @@ public class ObjectSummoning : MonoBehaviour
     {
         if (m_highlightedObject != null & m_summonTimer <= 0f)
         {
-            Instantiate(m_invocationCircle, m_summonCircleEmplacement.position, Quaternion.identity);
+            //Instantiate(m_invocationCircle, m_summonCircleEmplacement.position, Quaternion.identity);
             playerAnimator.SetTrigger("HoldTrigger");
             //m_invocationCircle.SetActive(true);
             m_highlightedObject.GetComponent<SummonableObject>().OnMouseHooverExit();
