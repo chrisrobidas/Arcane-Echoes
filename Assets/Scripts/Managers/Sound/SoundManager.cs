@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Audio;
-using static UnityEngine.Rendering.DebugUI;
+using UnityEngine.Pool;
 
 [Serializable]
 public class SoundBank
@@ -13,6 +13,8 @@ public class SoundBank
         [SerializeField] AudioClip _clip;
         public AudioMixerGroup mixerGroup => _mixerGroup;
         [SerializeField] AudioMixerGroup _mixerGroup;
+        public float volume => m_volume;
+        [SerializeField] [Range(0,1)]float m_volume = 1;
     }
     public Sound swapColorSound => _swapColorSound;
     [SerializeField] private Sound _swapColorSound;
@@ -32,6 +34,13 @@ public class SoundManager : MonoBehaviour
 
     private static SoundManager m_instance;
     public static SoundManager Instance { get { return m_instance; } }
+
+    [Header("SoundEmitter ObjectPool")]
+    [SerializeField] private SoundEmitter m_soundEmitterPrefab;
+    [SerializeField] private int m_initialPoolCapacity = 10;
+    [SerializeField] private int m_maxPoolSize = 10;
+    [SerializeField] private bool m_collectionChecks = true;
+    private ObjectPool<SoundEmitter> m_pool;
 
     [Header("Audio control")]
     [SerializeField] private AudioMixer audioMixer = default;
@@ -62,6 +71,8 @@ public class SoundManager : MonoBehaviour
         m_masterVolume = PlayerPrefs.GetFloat(masterVolumeParamName);
         m_gameVolume = PlayerPrefs.GetFloat(gameVolumeParamName);
         m_musicVolume = PlayerPrefs.GetFloat(musicVolumeParamName);
+
+        InitializeObjectPool();
     }
 
     void OnValidate()
@@ -87,6 +98,47 @@ public class SoundManager : MonoBehaviour
         VolumeMenu.onGameVolumeChanged -= SetEffectsVolume;
         VolumeMenu.onMusicVolumeChanged -= SetMusicVolume;
     }
+
+
+    [ContextMenu("Test sound")]
+    public void TestSound()
+    {
+        PlaySound(GetComponent<AudioSource>(), soundBank.swapColorSound);
+    }
+
+    #region ObjectPool
+    private void InitializeObjectPool()
+    {
+        m_pool = new ObjectPool<SoundEmitter>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, m_collectionChecks, m_initialPoolCapacity, m_maxPoolSize);
+    }
+
+    SoundEmitter CreatePooledItem()
+    {
+        SoundEmitter soundEmitter = Instantiate(m_soundEmitterPrefab, transform);
+        soundEmitter.Prepare();
+        return soundEmitter;
+    }
+
+    // Called when an item is returned to the pool using Release
+    void OnReturnedToPool(SoundEmitter soundEmitter)
+    {
+        soundEmitter.gameObject.SetActive(false);
+    }
+
+    // Called when an item is taken from the pool using Get
+    void OnTakeFromPool(SoundEmitter soundEmitter)
+    {
+        soundEmitter.gameObject.SetActive(true);
+    }
+
+    // If the pool capacity is reached then any items returned will be destroyed.
+    // We can control what the destroy behavior does, here we destroy the GameObject.
+    void OnDestroyPoolObject(SoundEmitter soundEmitter)
+    {
+        Destroy(soundEmitter.gameObject);
+    }
+    #endregion
+
 
     public void SetGroupVolume(string parameterName, float normalizedVolume)
     {
@@ -132,6 +184,7 @@ public class SoundManager : MonoBehaviour
     {
         source.clip = sound.clip;
         source.outputAudioMixerGroup = sound.mixerGroup;
+        source.volume = sound.volume;
         source.Play();
     }
 
