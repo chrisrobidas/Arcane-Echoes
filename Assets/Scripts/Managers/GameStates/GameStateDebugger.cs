@@ -20,12 +20,12 @@ public class GameStateDebugger : MonoBehaviour
 
     public virtual void OnGameStateEnter(EGameState gameState)
     {
-        Debug.Log($"GameState entered {gameState}");
+        Debug.Log($"<b>[GameManager]</b> Enter state : {gameState}");
     }
 
     public virtual void OnGameStateExit(EGameState gameState)
     {
-        Debug.Log($"GameState exited {gameState}");
+        Debug.Log($"<b>[GameManager]</b> Exit state : {gameState}");
     }
 #endif
 }
