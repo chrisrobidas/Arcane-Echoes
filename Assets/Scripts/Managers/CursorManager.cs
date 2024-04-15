@@ -19,6 +19,7 @@ public class CursorManager : MonoBehaviour
         CursorLockMode lockMode = CursorLockMode.None;
         switch (gameState)
         {
+
             case EGameState.Game:
                 enter = !enter;
                 break;
@@ -28,7 +29,7 @@ public class CursorManager : MonoBehaviour
             case EGameState.GameOver:
                 break;
             default:
-                break;
+                return;
         }
         lockMode = enter ? CursorLockMode.None : CursorLockMode.Locked;
 #if UNITY_EDITOR
