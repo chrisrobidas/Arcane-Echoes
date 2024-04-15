@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 582421774620145001}
   - component: {fileID: 7604806773533266017}
   - component: {fileID: 5816182130348644695}
+  - component: {fileID: 2935459918737931933}
   m_Layer: 6
   m_Name: box
   m_TagString: Untagged
@@ -182,3 +183,19 @@ MonoBehaviour:
   m_objectDestroyedEffect: {fileID: 2965222256817593503, guid: cf80cd63aa118a540b6dd5a62e4b3daf,
     type: 3}
   m_playerObjectSummoning: {fileID: 0}
+--- !u!208 &2935459918737931933
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8787773208717683084}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.0050000004, y: 0.0050000004, z: 0.0050000004}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
