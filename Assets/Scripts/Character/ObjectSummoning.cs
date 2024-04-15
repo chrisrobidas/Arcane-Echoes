@@ -142,6 +142,7 @@ public class ObjectSummoning : MonoBehaviour
     {
         if (m_highlightedObject != null & m_summonTimer <= 0f)
         {
+            SoundManager.PlaySound(SoundManager.SoundBank.summonSound);
             playerAnimator.SetTrigger("HoldTrigger");
             m_highlightedObject.GetComponent<SummonableObject>().OnMouseHooverExit();
             Vector3 l_scale = m_highlightedObject.transform.localScale;
@@ -164,6 +165,7 @@ public class ObjectSummoning : MonoBehaviour
     {
         if (m_summonedObject != null & m_summonedObject.GetComponent<SummonableObject>().IsInstanciable)
         {
+            SoundManager.PlaySound(SoundManager.SoundBank.pushSound);
             playerAnimator.SetTrigger("ProjectTrigger");
             m_summonedObject.GetComponent<SummonableObject>().OnDrop();
             Rigidbody rb = m_summonedObject.GetComponent<Rigidbody>();

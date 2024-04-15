@@ -142,6 +142,7 @@ public class SummonableObject : MonoBehaviour
             m_hp -= 1;
             if (m_hp <= 0)
             {
+                SoundManager.PlaySound(SoundManager.SoundBank.summonSound);
                 Instantiate(m_objectDestroyedEffect, transform.position, transform.rotation, null);
                 m_playerObjectSummoning.SummonedObjectDestroyed();
                 Destroy(gameObject);                
