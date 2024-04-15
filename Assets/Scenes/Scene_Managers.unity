@@ -443,16 +443,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2777011733520348114, guid: 6cb0193478ac4764baf516caa9a84b35,
-        type: 3}
-      propertyPath: soundBank.m_gameMusic.m_volume
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2777011733520348114, guid: 6cb0193478ac4764baf516caa9a84b35,
-        type: 3}
-      propertyPath: soundBank.m_mainMenuMusic.m_volume
-      value: 0.557
-      objectReference: {fileID: 0}
     - target: {fileID: 5556325570709601928, guid: 6cb0193478ac4764baf516caa9a84b35,
         type: 3}
       propertyPath: m_Name

@@ -18,7 +18,7 @@ TagManager:
   - MovingObject
   - Obstacle
   - Player
-  - 
+  - InvisibleTrigger
   - 
   - 
   - 
