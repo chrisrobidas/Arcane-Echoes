@@ -541,7 +541,7 @@ MonoBehaviour:
   _waypointPath: {fileID: 0}
   _initialWaypointIndex: 0
   _speed: 3.5
-  _stoppingDistanceFromPlayer: 15
+  _stoppingDistanceFromPlayer: 25
   _projectilePrefab: {fileID: 998962324378686232, guid: c39fc3d61a899664aa04590d55e058d5,
     type: 3}
   _projectileSpawn: {fileID: 1412015551673112500}
@@ -2012,7 +2012,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0, g: 0.92156863, b: 1, a: 1}
-  m_Intensity: 0.01
+  m_Intensity: 0.7
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208

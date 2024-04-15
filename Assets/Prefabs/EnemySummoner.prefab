@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3893057868969610866}
   - component: {fileID: 2354119341187272829}
   - component: {fileID: 8287651722036821464}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: EnemySummoner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
