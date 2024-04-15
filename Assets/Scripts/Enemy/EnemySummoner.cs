@@ -29,8 +29,8 @@ public class EnemySummoner : MonoBehaviour
                 Instantiate(_summonEffect, enemy.transform.position, enemy.transform.rotation, enemy.transform);
                 SoundManager.PlaySoundAt(SoundManager.SoundBank.enemySummonSound, enemy.transform.position);
             }
-        }
 
-        _isSummonDone = true;
+            _isSummonDone = true;
+        }
     }
 }

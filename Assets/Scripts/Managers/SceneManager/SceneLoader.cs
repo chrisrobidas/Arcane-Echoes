@@ -48,6 +48,28 @@ public class SceneLoader : MonoBehaviour
             await UnloadScenes(unusedScenes);
         }
 
+        if (reloadDuplicate)
+        {
+            EScenes duplicates = EScenes.None;
+            foreach (EScenes value in Enum.GetValues(typeof(EScenes)))
+            {
+                if (!scenesToLoad.HasFlag(value) || value == EScenes.None)
+                {
+                    continue;
+                }
+
+                if (loadedScenes.HasFlag(value) && scenesToLoad.HasFlag(value))
+                {
+                    duplicates |= value;
+#if UNITY_EDITOR
+                    Debug.Log($"<b>[SceneLoader]</b> Found duplicate ({value})");
+#endif
+                    continue;
+                }
+            }
+            await UnloadScenes(duplicates);
+        }
+
         var operationGroup = new AsyncOperationGroup();
 
         foreach (EScenes value in Enum.GetValues(typeof(EScenes)))

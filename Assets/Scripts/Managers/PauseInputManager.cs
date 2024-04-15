@@ -15,24 +15,35 @@ public class PauseInputManager : MonoBehaviour
     }
     private void OnEnable()
     {
-        GameManager.GameStateMachine.OnStateEnter += (gameState) => { OnGameStateChange(gameState, true); };
-        GameManager.GameStateMachine.OnStateExit += (gameState) => { OnGameStateChange(gameState, false); };
+        GameManager.GameStateMachine.OnStateEnter += OnGameStateEnter;
+        GameManager.GameStateMachine.OnStateExit += OnGameStatExit;
     }
 
     private void OnDisable()
     {
-        GameManager.GameStateMachine.OnStateEnter -= (gameState) => { OnGameStateChange(gameState, true); };
-        GameManager.GameStateMachine.OnStateExit -= (gameState) => { OnGameStateChange(gameState, false); };
+        GameManager.GameStateMachine.OnStateEnter -= OnGameStateEnter;
+        GameManager.GameStateMachine.OnStateExit -= OnGameStatExit;
     }
 
-    void OnGameStateChange(EGameState gameState, bool enter)
+    void OnGameStateEnter(EGameState gameState)
     {
-        if (gameState == EGameState.Game)
+        if (gameState.HasFlag(EGameState.Game))
         {
-            EnablePauseInput(enter);
+            EnablePauseInput(true);
         }
 #if UNITY_EDITOR
-        Debug.Log($"<b>[PauseInputManager]</b> Pause input enabled : {enter}");
+        Debug.Log($"<b>[PauseInputManager]</b> Pause input enabled");
+#endif
+    }
+
+    void OnGameStatExit(EGameState gameState)
+    {
+        if (gameState.HasFlag(EGameState.Game))
+        {
+            EnablePauseInput(false);
+        }
+#if UNITY_EDITOR
+        Debug.Log($"<b>[PauseInputManager]</b> Pause input disabled");
 #endif
     }
 
@@ -45,12 +56,13 @@ public class PauseInputManager : MonoBehaviour
         }
         else
         {
+            playerInputsAction.PauseInput.Disable();
             playerInputsAction.PauseInput.Pause.performed -= Pause;
         }
     }
 
     private void Pause(InputAction.CallbackContext context)
     {
-        GameManager.PauseGame();
+        GameManager.PauseResumeGame();
     }
 }

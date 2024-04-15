@@ -32,8 +32,9 @@ public class CursorManager : MonoBehaviour
             default:
                 return;
         }
-#if UNITY_EDITOR
         CursorLockMode lockMode = !enter ? CursorLockMode.Locked : CursorLockMode.None;
+#if UNITY_EDITOR
+
         Debug.Log($"<b>[CursorManager]</b> Set cursor to {lockMode}");
 #endif
         Cursor.lockState = lockMode;
