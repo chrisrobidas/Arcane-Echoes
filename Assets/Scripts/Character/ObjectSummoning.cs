@@ -122,20 +122,19 @@ public class ObjectSummoning : MonoBehaviour
     {
         if (m_highlightedObject != null & m_summonTimer <= 0f)
         {
-            //Instantiate(m_invocationCircle, m_summonCircleEmplacement.position, Quaternion.identity);
             playerAnimator.SetTrigger("HoldTrigger");
-            //m_invocationCircle.SetActive(true);
             m_highlightedObject.GetComponent<SummonableObject>().OnMouseHooverExit();
             Vector3 l_scale = m_highlightedObject.transform.localScale;
+            Instantiate(m_invocationCircle, m_summonCircleEmplacement.position, Quaternion.identity, null);
             m_summonedObject = Instantiate(m_highlightedObject, m_objectSummonPoint.position, m_highlightedObject.transform.rotation);
             m_highlightedObject = null;
 
             m_summonedObject.GetComponent<Rigidbody>().isKinematic = true;
             m_summonedObject.GetComponent<Collider>().enabled = false;
             m_summonedObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-            LeanTween.move(m_summonedObject, m_objectHoldPoint.position, 1f).setEase(LeanTweenType.easeOutElastic).setOnComplete(AnimationOver);
+            m_summonedObject.transform.SetParent(m_objectHoldPoint);
+            LeanTween.moveLocal(m_summonedObject, m_objectHoldPoint.localPosition, 1f).setEase(LeanTweenType.easeOutElastic).setOnComplete(AnimationOver);
             LeanTween.scale(m_summonedObject, l_scale, 1f).setEase(LeanTweenType.easeInOutBounce);
-            m_summonedObject.transform.SetParent(m_objectHoldPoint); // gameObject.transform
             m_summonTimer += m_SummonCoolDown;
         }        
     }
@@ -165,7 +164,6 @@ public class ObjectSummoning : MonoBehaviour
     private void AnimationOver()
     {
         m_summonedObject.GetComponent<SummonableObject>().IsSummoned = true;
-        m_invocationCircle.SetActive(false);
     }
 
     private void OnDestroy()

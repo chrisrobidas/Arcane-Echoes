@@ -222,6 +222,15 @@ public partial class @PlayerInputsAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveZ"",
+                    ""type"": ""Value"",
+                    ""id"": ""c9ba5982-dec5-422b-bf4a-2fa29a09e2bf"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -290,6 +299,39 @@ public partial class @PlayerInputsAction: IInputActionCollection2, IDisposable
                     ""action"": ""Delete"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""2f345619-b52f-4d9b-8fd8-1aed27b0c690"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveZ"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""fddd8e3c-6b40-48fd-8ba8-8182dec12a99"",
+                    ""path"": ""<Mouse>/scroll/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveZ"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""826f03c1-b5fa-473e-a91c-fa847ebfb574"",
+                    ""path"": ""<Mouse>/scroll/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveZ"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -855,6 +897,7 @@ public partial class @PlayerInputsAction: IInputActionCollection2, IDisposable
         m_PlayerSummoning_Project = m_PlayerSummoning.FindAction("Project", throwIfNotFound: true);
         m_PlayerSummoning_Rotate = m_PlayerSummoning.FindAction("Rotate", throwIfNotFound: true);
         m_PlayerSummoning_Delete = m_PlayerSummoning.FindAction("Delete", throwIfNotFound: true);
+        m_PlayerSummoning_MoveZ = m_PlayerSummoning.FindAction("MoveZ", throwIfNotFound: true);
         // PauseInput
         m_PauseInput = asset.FindActionMap("PauseInput", throwIfNotFound: true);
         m_PauseInput_Pause = m_PauseInput.FindAction("Pause", throwIfNotFound: true);
@@ -1051,6 +1094,7 @@ public partial class @PlayerInputsAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerSummoning_Project;
     private readonly InputAction m_PlayerSummoning_Rotate;
     private readonly InputAction m_PlayerSummoning_Delete;
+    private readonly InputAction m_PlayerSummoning_MoveZ;
     public struct PlayerSummoningActions
     {
         private @PlayerInputsAction m_Wrapper;
@@ -1059,6 +1103,7 @@ public partial class @PlayerInputsAction: IInputActionCollection2, IDisposable
         public InputAction @Project => m_Wrapper.m_PlayerSummoning_Project;
         public InputAction @Rotate => m_Wrapper.m_PlayerSummoning_Rotate;
         public InputAction @Delete => m_Wrapper.m_PlayerSummoning_Delete;
+        public InputAction @MoveZ => m_Wrapper.m_PlayerSummoning_MoveZ;
         public InputActionMap Get() { return m_Wrapper.m_PlayerSummoning; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1080,6 +1125,9 @@ public partial class @PlayerInputsAction: IInputActionCollection2, IDisposable
             @Delete.started += instance.OnDelete;
             @Delete.performed += instance.OnDelete;
             @Delete.canceled += instance.OnDelete;
+            @MoveZ.started += instance.OnMoveZ;
+            @MoveZ.performed += instance.OnMoveZ;
+            @MoveZ.canceled += instance.OnMoveZ;
         }
 
         private void UnregisterCallbacks(IPlayerSummoningActions instance)
@@ -1096,6 +1144,9 @@ public partial class @PlayerInputsAction: IInputActionCollection2, IDisposable
             @Delete.started -= instance.OnDelete;
             @Delete.performed -= instance.OnDelete;
             @Delete.canceled -= instance.OnDelete;
+            @MoveZ.started -= instance.OnMoveZ;
+            @MoveZ.performed -= instance.OnMoveZ;
+            @MoveZ.canceled -= instance.OnMoveZ;
         }
 
         public void RemoveCallbacks(IPlayerSummoningActions instance)
@@ -1294,6 +1345,7 @@ public partial class @PlayerInputsAction: IInputActionCollection2, IDisposable
         void OnProject(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
         void OnDelete(InputAction.CallbackContext context);
+        void OnMoveZ(InputAction.CallbackContext context);
     }
     public interface IPauseInputActions
     {
