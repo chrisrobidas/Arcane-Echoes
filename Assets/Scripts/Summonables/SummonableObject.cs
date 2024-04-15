@@ -34,6 +34,7 @@ public class SummonableObject : MonoBehaviour
     // End Ennmies and Others
 
     // Internal
+    [HideInInspector]public ObjectSummoning m_playerObjectSummoning;
     public bool IsInstanciable => m_isInstanciable;
     private bool m_isInstanciable;
     public bool IsSummoned { get { return m_isSummoned; } set { m_isSummoned = value; } }
@@ -142,6 +143,7 @@ public class SummonableObject : MonoBehaviour
             if (m_hp <= 0)
             {
                 Instantiate(m_objectDestroyedEffect, transform.position, transform.rotation, null);
+                m_playerObjectSummoning.SummonedObjectDestroyed();
                 Destroy(gameObject);                
             }
             return;
