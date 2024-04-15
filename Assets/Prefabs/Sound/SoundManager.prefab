@@ -51,7 +51,7 @@ MonoBehaviour:
       m_volume: 0.578
     m_gameMusic:
       _clip: {fileID: 8300000, guid: 76d9612a226ff1f4f986324e96789da5, type: 3}
-      m_volume: 0.219
+      m_volume: 0.1
     m_impactSound:
       _clip: {fileID: 8300000, guid: 49c01fa41430b6845805fe50b270463d, type: 3}
       m_volume: 0.5
