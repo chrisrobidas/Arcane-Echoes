@@ -21,14 +21,16 @@ public class SummonableObject : MonoBehaviour
     [Header("Ennemies and Others")]
     [SerializeField]
     private bool m_isLethal;
-    [SerializeField]
-    private int m_hp;
     [SerializeField, Range(0f, 2f)]
     private float m_armingTime = 0.1f;
     [SerializeField]
-    private GameObject m_deathEffect;
+    private GameObject m_enemyDeathEffect;
+    [SerializeField]
+    private int m_hp;
     [SerializeField, Range(30f, 300f)]
     private float m_cloneLifeTime = 60f;
+    [SerializeField]
+    private GameObject m_objectDestroyedEffect;
     // End Ennmies and Others
 
     // Internal
@@ -130,12 +132,18 @@ public class SummonableObject : MonoBehaviour
         }
         if (other.CompareTag("Enemy") & m_armingTime <= 0f & !m_isInhibited)
         {
-            Instantiate(m_deathEffect, other.transform.position, other.transform.rotation, null);
+            Instantiate(m_enemyDeathEffect, other.transform.position, other.transform.rotation, null);
             Destroy(other.gameObject);
             return;
         }
         if (other.CompareTag("Projectile"))
         {
+            m_hp -= 1;
+            if (m_hp <= 0)
+            {
+                Instantiate(m_objectDestroyedEffect, transform.position, transform.rotation, null);
+                Destroy(gameObject);                
+            }
             return;
         }
         m_collidesWithCounter += 1;

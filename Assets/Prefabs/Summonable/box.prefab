@@ -174,8 +174,10 @@ MonoBehaviour:
   m_canBeSummonedColor: {r: 0, g: 1, b: 0, a: 1}
   m_canNOTBeSummonedColor: {r: 1, g: 0, b: 0, a: 1}
   m_isLethal: 1
-  m_hp: 2
   m_armingTime: 0
-  m_deathEffect: {fileID: 7053385775836331393, guid: 47169fdfe2be3e94699bffa2d17430e0,
+  m_enemyDeathEffect: {fileID: 7053385775836331393, guid: 47169fdfe2be3e94699bffa2d17430e0,
     type: 3}
+  m_hp: 2
   m_cloneLifeTime: 60
+  m_objectDestroyedEffect: {fileID: 2965222256817593503, guid: cf80cd63aa118a540b6dd5a62e4b3daf,
+    type: 3}
