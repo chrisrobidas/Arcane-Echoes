@@ -13,6 +13,7 @@ public class ScrollPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            SoundManager.PlaySound(SoundManager.SoundBank.portalSound);
             _endPortal.SetActive(true);
             gameObject.SetActive(false);
         }

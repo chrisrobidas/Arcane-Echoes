@@ -38,4 +38,13 @@ public class SoundBank
 
     public Sound deathSound => m_deathSound;
     [SerializeField] private Sound m_deathSound;
+
+    public Sound pushSound => m_pushSound;
+    [SerializeField] private Sound m_pushSound;
+
+    public Sound summonSound => m_summonSound;
+    [SerializeField] private Sound m_summonSound;
+
+    public Sound portalSound => m_portalSound;
+    [SerializeField] private Sound m_portalSound;
 }
