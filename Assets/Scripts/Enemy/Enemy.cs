@@ -52,6 +52,18 @@ public abstract class Enemy : MonoBehaviour
 
     public abstract void Attack();
 
+    public void StartChasingOrAttack()
+    {
+        if (IsAtStoppingDistanceFromPlayer())
+        {
+            StartAttacking();
+        }
+        else
+        {
+            StartChasing();
+        }
+    }
+
     public void StartChasing()
     {
         CurrentState = EnemyState.Chasing;

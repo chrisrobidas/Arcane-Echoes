@@ -20,7 +20,7 @@ public class EnemyFieldOfView : FieldOfView
         {
             if (_enemy.CurrentState == Enemy.EnemyState.Wandering)
             {
-                _enemy.StartChasing();
+                _enemy.StartChasingOrAttack();
             }
         }
     }
