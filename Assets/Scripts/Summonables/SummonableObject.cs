@@ -17,10 +17,19 @@ public class SummonableObject : MonoBehaviour
     [Space]
     // End outline colors scheme
 
-    // Other
+    // Other & Ennemies
+    [Header("Ennemies and Others")]
+    [SerializeField]
+    private bool m_isLethal;
+    [SerializeField]
+    private int m_hp;
+    [SerializeField, Range(0f, 2f)]
+    private float m_armingTime = 0.1f;
+    [SerializeField]
+    private GameObject m_deathEffect;
     [SerializeField, Range(30f, 300f)]
     private float m_cloneLifeTime = 60f;
-    // End Others
+    // End Ennmies and Others
 
     // Internal
     public bool IsInstanciable => m_isInstanciable;
@@ -29,7 +38,8 @@ public class SummonableObject : MonoBehaviour
     private bool m_isSummoned = false;
     
     private int m_collidesWithCounter = 0;
-    private bool deathBed;
+    private bool m_deathBed;
+    private bool m_isInhibited = true;
 
     // Update is called once per frame
     void Update()
@@ -46,10 +56,14 @@ public class SummonableObject : MonoBehaviour
             }
             SetOutlineColor(m_isInstanciable);
         }
-        if (deathBed)
+        if (m_deathBed)
         {
             m_cloneLifeTime -= Time.deltaTime;
             if (m_cloneLifeTime <= 0f) { Destroy(gameObject); }
+        }
+        if (m_isLethal & !m_isInhibited)
+        {
+            m_armingTime -= Time.deltaTime;
         }
     }
 
@@ -88,7 +102,8 @@ public class SummonableObject : MonoBehaviour
                 material.SetColor("_OutlineColor", m_defaultColor);
             }
         }
-        deathBed = true;
+        m_deathBed = true;
+        m_isInhibited = false;
     }
 
     private void SetOutlineColor(bool canBeSummoned)
@@ -109,6 +124,16 @@ public class SummonableObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Enemy") & m_armingTime <= 0f & m_isLethal)
+        {
+            Instantiate(m_deathEffect, other.transform.position, other.transform.rotation, null);
+            Destroy(other.gameObject);
+            return;
+        }
+        if (other.CompareTag("Projectile"))
+        {
+            return;
+        }
         m_collidesWithCounter += 1;
     }
 
