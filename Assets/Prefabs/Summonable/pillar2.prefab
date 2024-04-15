@@ -118,10 +118,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6432236533926962451}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d9da1d35949b50d48a334b81c91fa966,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8181413839716540232}
   m_SourcePrefab: {fileID: 100100000, guid: d9da1d35949b50d48a334b81c91fa966, type: 3}
 --- !u!1 &479723005796417643 stripped
 GameObject:
@@ -215,18 +211,9 @@ MonoBehaviour:
   m_highlightedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   m_canBeSummonedColor: {r: 0, g: 1, b: 0, a: 1}
   m_canNOTBeSummonedColor: {r: 1, g: 0, b: 0, a: 1}
-  m_cloneLifeTime: 60
---- !u!114 &8181413839716540232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 479723005796417643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 587ff14ba255f054b8c3cf7ae1c6aff9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _deathEffect: {fileID: 7053385775836331393, guid: 47169fdfe2be3e94699bffa2d17430e0,
+  m_isLethal: 1
+  m_hp: 10
+  m_armingTime: 0.1
+  m_deathEffect: {fileID: 7053385775836331393, guid: 47169fdfe2be3e94699bffa2d17430e0,
     type: 3}
+  m_cloneLifeTime: 60

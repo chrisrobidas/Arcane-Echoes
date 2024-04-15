@@ -1551,7 +1551,6 @@ GameObject:
   - component: {fileID: 1355229426965855260}
   - component: {fileID: 2332219084541701917}
   - component: {fileID: 6804373610482520258}
-  - component: {fileID: 3874720789130715895}
   m_Layer: 6
   m_Name: table105
   m_TagString: Untagged
@@ -1712,18 +1711,9 @@ MonoBehaviour:
   m_highlightedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   m_canBeSummonedColor: {r: 0, g: 1, b: 0, a: 1}
   m_canNOTBeSummonedColor: {r: 1, g: 0, b: 0, a: 1}
-  m_cloneLifeTime: 60
---- !u!114 &3874720789130715895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8944825781905681261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 587ff14ba255f054b8c3cf7ae1c6aff9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _deathEffect: {fileID: 7053385775836331393, guid: 47169fdfe2be3e94699bffa2d17430e0,
+  m_isLethal: 1
+  m_hp: 4
+  m_armingTime: 0.1
+  m_deathEffect: {fileID: 7053385775836331393, guid: 47169fdfe2be3e94699bffa2d17430e0,
     type: 3}
+  m_cloneLifeTime: 60

@@ -314,15 +314,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4829759559250838944, guid: ee2665ec9ead3e143a59e3900945db3c,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2995745096182445520}
-    - targetCorrespondingSourceObject: {fileID: 4829759559250838944, guid: ee2665ec9ead3e143a59e3900945db3c,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 7128453727558679081}
     - targetCorrespondingSourceObject: {fileID: 4829759559250838944, guid: ee2665ec9ead3e143a59e3900945db3c,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1576639937539691250}
+      addedObject: {fileID: 2995745096182445520}
   m_SourcePrefab: {fileID: 100100000, guid: ee2665ec9ead3e143a59e3900945db3c, type: 3}
 --- !u!1 &4362813934604209176 stripped
 GameObject:
@@ -357,23 +353,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2995745096182445520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4362813934604209176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdfd106ac987acc4492912bd175a0b44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_defaultColor: {r: 0, g: 0, b: 0, a: 1}
-  m_highlightedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  m_canBeSummonedColor: {r: 0, g: 1, b: 0, a: 1}
-  m_canNOTBeSummonedColor: {r: 1, g: 0, b: 0, a: 1}
-  m_cloneLifeTime: 60
 --- !u!65 &7128453727558679081
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -395,7 +374,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.984974, y: 0.99918175, z: 0.30000445}
   m_Center: {x: 0, y: -0.0000076293945, z: -0.0000019073486}
---- !u!114 &1576639937539691250
+--- !u!114 &2995745096182445520
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -404,8 +383,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4362813934604209176}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 587ff14ba255f054b8c3cf7ae1c6aff9, type: 3}
+  m_Script: {fileID: 11500000, guid: bdfd106ac987acc4492912bd175a0b44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deathEffect: {fileID: 7053385775836331393, guid: 47169fdfe2be3e94699bffa2d17430e0,
+  m_defaultColor: {r: 0, g: 0, b: 0, a: 1}
+  m_highlightedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  m_canBeSummonedColor: {r: 0, g: 1, b: 0, a: 1}
+  m_canNOTBeSummonedColor: {r: 1, g: 0, b: 0, a: 1}
+  m_isLethal: 1
+  m_hp: 6
+  m_armingTime: 0.1
+  m_deathEffect: {fileID: 7053385775836331393, guid: 47169fdfe2be3e94699bffa2d17430e0,
     type: 3}
+  m_cloneLifeTime: 60

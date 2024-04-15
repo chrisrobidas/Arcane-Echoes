@@ -15,6 +15,8 @@ public class ObjectSummoning : MonoBehaviour
     private float m_projectionForce;
     [SerializeField, Range(10f, 100f)]
     private float m_rotationSpeed;
+    [SerializeField, Range(1f, 5f)]
+    private float m_translationSpeed;
     [Space]
     // End Summon tunables
 
@@ -47,6 +49,7 @@ public class ObjectSummoning : MonoBehaviour
     private PlayerInputsAction m_playerInputsAction;
     private GameObject m_highlightedObject;
     private GameObject m_summonedObject;
+    private GameObject m_currentSummonEffect;
     private float m_summonTimer;
 
     // Start is called before the first frame update
@@ -93,11 +96,30 @@ public class ObjectSummoning : MonoBehaviour
         }
         else if (m_summonedObject != null)
         {
-            float rotation = m_playerInputsAction.PlayerSummoning.Rotate.ReadValue<float>();
-            if (rotation != 0f)
+            float rotationX = m_playerInputsAction.PlayerSummoning.RotateX.ReadValue<float>();
+            float rotationY = m_playerInputsAction.PlayerSummoning.RotateY.ReadValue<float>();
+            float rotationZ = m_playerInputsAction.PlayerSummoning.RotateZ.ReadValue<float>();
+
+            float translation = m_playerInputsAction.PlayerSummoning.MoveZ.ReadValue<float>();
+
+            if (rotationX != 0f)
             {
-                m_summonedObject.transform.Rotate(0f, rotation * m_rotationSpeed * Time.deltaTime, 0f);
+                m_summonedObject.transform.Rotate(rotationX * m_rotationSpeed * Time.deltaTime, 0f, 0f);
             }
+            if (rotationY != 0f)
+            {
+                m_summonedObject.transform.Rotate(0f, rotationY * m_rotationSpeed * Time.deltaTime, 0f);
+            }
+            if (rotationZ != 0f)
+            {
+                m_summonedObject.transform.Rotate(0f, 0f, rotationZ * m_rotationSpeed * Time.deltaTime);
+            }
+
+            if (translation != 0f)
+            {
+                m_summonedObject.transform.Translate(Vector3.forward * translation * m_translationSpeed * Time.deltaTime, transform);
+            }
+
             if (m_playerInputsAction.PlayerSummoning.Summon.WasReleasedThisFrame() & m_summonedObject.GetComponent<SummonableObject>().IsInstanciable)
             {
                 DropSummonedObject();
@@ -122,20 +144,19 @@ public class ObjectSummoning : MonoBehaviour
     {
         if (m_highlightedObject != null & m_summonTimer <= 0f)
         {
-            //Instantiate(m_invocationCircle, m_summonCircleEmplacement.position, Quaternion.identity);
             playerAnimator.SetTrigger("HoldTrigger");
-            //m_invocationCircle.SetActive(true);
             m_highlightedObject.GetComponent<SummonableObject>().OnMouseHooverExit();
             Vector3 l_scale = m_highlightedObject.transform.localScale;
+            m_currentSummonEffect = Instantiate(m_invocationCircle, m_summonCircleEmplacement.position, Quaternion.identity, null);
             m_summonedObject = Instantiate(m_highlightedObject, m_objectSummonPoint.position, m_highlightedObject.transform.rotation);
             m_highlightedObject = null;
 
             m_summonedObject.GetComponent<Rigidbody>().isKinematic = true;
             m_summonedObject.GetComponent<Collider>().enabled = false;
             m_summonedObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-            LeanTween.move(m_summonedObject, m_objectHoldPoint.position, 1f).setEase(LeanTweenType.easeOutElastic).setOnComplete(AnimationOver);
+            m_summonedObject.transform.SetParent(m_objectHoldPoint);
+            LeanTween.moveLocal(m_summonedObject, m_objectHoldPoint.localPosition, 1f).setEase(LeanTweenType.easeOutElastic).setOnComplete(AnimationOver);
             LeanTween.scale(m_summonedObject, l_scale, 1f).setEase(LeanTweenType.easeInOutBounce);
-            m_summonedObject.transform.SetParent(m_objectHoldPoint); // gameObject.transform
             m_summonTimer += m_SummonCoolDown;
         }        
     }
@@ -165,7 +186,7 @@ public class ObjectSummoning : MonoBehaviour
     private void AnimationOver()
     {
         m_summonedObject.GetComponent<SummonableObject>().IsSummoned = true;
-        m_invocationCircle.SetActive(false);
+        Destroy(m_currentSummonEffect);
     }
 
     private void OnDestroy()
