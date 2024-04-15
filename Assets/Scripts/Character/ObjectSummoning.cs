@@ -52,7 +52,6 @@ public class ObjectSummoning : MonoBehaviour
     private GameObject m_currentSummonEffect;
     private float m_summonTimer;
 
-    // Start is called before the first frame update
     void Start()
     {
         playerAnimator = GetComponentInChildren<Animator>();
@@ -65,7 +64,6 @@ public class ObjectSummoning : MonoBehaviour
         m_objectHoldPoint.Translate(m_objectHoldPoint.forward * m_sPointForwardDistance);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (m_summonTimer <= 0f & m_summonedObject == null)
@@ -153,6 +151,7 @@ public class ObjectSummoning : MonoBehaviour
 
             m_summonedObject.GetComponent<Rigidbody>().isKinematic = true;
             m_summonedObject.GetComponent<Collider>().enabled = false;
+            m_summonedObject.GetComponent<SummonableObject>().m_playerObjectSummoning = this;
             m_summonedObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             m_summonedObject.transform.SetParent(m_objectHoldPoint);
             LeanTween.moveLocal(m_summonedObject, m_objectHoldPoint.localPosition, 1f).setEase(LeanTweenType.easeOutElastic).setOnComplete(AnimationOver);
@@ -187,6 +186,12 @@ public class ObjectSummoning : MonoBehaviour
     {
         m_summonedObject.GetComponent<SummonableObject>().IsSummoned = true;
         Destroy(m_currentSummonEffect);
+    }
+
+    public void SummonedObjectDestroyed()
+    {
+        playerAnimator.SetTrigger("ResetTrigger");
+        m_summonedObject = null;
     }
 
     private void OnDestroy()
