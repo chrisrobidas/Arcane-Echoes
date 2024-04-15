@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -497,8 +497,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 298.5, y: -46.62479}
-  m_SizeDelta: {x: 597, y: 93.24958}
+  m_AnchoredPosition: {x: 298.5, y: -61.40599}
+  m_SizeDelta: {x: 597, y: 122.81198}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &75746610
 GameObject:
@@ -570,7 +570,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'VFX et UI :
+  m_Text: 'VFX & UI :
 
     Elodie Vasseur'
 --- !u!222 &75746613
@@ -1834,7 +1834,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Artiste 3D :
+  m_Text: '3D Artist :
 
     Julien Giroux'
 --- !u!222 &267628554
@@ -3631,8 +3631,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 298.5, y: -283.12396}
-  m_SizeDelta: {x: 597, y: 93.24958}
+  m_AnchoredPosition: {x: 298.5, y: -209.21797}
+  m_SizeDelta: {x: 597, y: 122.81198}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &614841241
 GameObject:
@@ -4137,7 +4137,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'VFX et UI :
+  m_Text: 'VFX & UI :
 
     Elodie Vasseur'
 --- !u!222 &665087086
@@ -4184,8 +4184,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 298.5, y: -519.6231}
-  m_SizeDelta: {x: 597, y: 93.24958}
+  m_AnchoredPosition: {x: 298.5, y: -504.84192}
+  m_SizeDelta: {x: 597, y: 122.81198}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &692246160
 MonoBehaviour:
@@ -4653,7 +4653,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Programmeur :\nChristopher Robidas\nFergal Iquel \nGr\xE9gory Largange"
+  m_Text: "Programmers :\nChristopher Robidas\nFergal Iquel \nGr\xE9gory Largange"
 --- !u!222 &878579341
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5002,7 +5002,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Programmeur :\nChristopher Robidas\nFergal Iquel \nGr\xE9gory Largange"
+  m_Text: "Programmers :\nChristopher Robidas\nFergal Iquel \nGr\xE9gory Largange"
 --- !u!222 &953575698
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5260,7 +5260,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'GD/LD de soutient ^^'' :
+  m_Text: 'GD/LD :
 
     Lucas Vauzour'
 --- !u!222 &1020215337
@@ -7529,7 +7529,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'GD/LD de soutient ^^'' :
+  m_Text: 'GD/LD :
 
     Lucas Vauzour'
 --- !u!222 &1617231136
@@ -8039,7 +8039,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Artiste 3D :
+  m_Text: '3D Artist :
 
     Julien Giroux'
 --- !u!222 &1674187977
@@ -9601,8 +9601,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 298.5, y: -401.37354}
-  m_SizeDelta: {x: 597, y: 93.24958}
+  m_AnchoredPosition: {x: 298.5, y: -357.02997}
+  m_SizeDelta: {x: 597, y: 122.81198}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1879859113
 MonoBehaviour:
@@ -9805,7 +9805,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Rigging et animation :
+  m_Text: 'Rigging & animation :
 
     Tristan St-Arnaud'
 --- !u!222 &1930795491
@@ -10659,7 +10659,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Rigging et animation :
+  m_Text: 'Rigging & animation :
 
     Tristan St-Arnaud'
 --- !u!222 &2128533637

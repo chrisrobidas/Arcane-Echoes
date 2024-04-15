@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4413697, g: 0.49018955, b: 0.5702303, a: 1}
+  m_IndirectSpecularColor: {r: 0.010486943, g: 0.05298245, b: 0.15319028, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -482,6 +482,74 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a1502cf8cd88d54e92dc99059342e2f, type: 3}
+--- !u!1001 &255788926
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5100709274186987365, guid: b63e5e4045c215f4eae0523fdce88f1f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.167
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100709274186987365, guid: b63e5e4045c215f4eae0523fdce88f1f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.043
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100709274186987365, guid: b63e5e4045c215f4eae0523fdce88f1f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.5471
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100709274186987365, guid: b63e5e4045c215f4eae0523fdce88f1f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100709274186987365, guid: b63e5e4045c215f4eae0523fdce88f1f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100709274186987365, guid: b63e5e4045c215f4eae0523fdce88f1f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100709274186987365, guid: b63e5e4045c215f4eae0523fdce88f1f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100709274186987365, guid: b63e5e4045c215f4eae0523fdce88f1f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100709274186987365, guid: b63e5e4045c215f4eae0523fdce88f1f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100709274186987365, guid: b63e5e4045c215f4eae0523fdce88f1f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585181123841158623, guid: b63e5e4045c215f4eae0523fdce88f1f,
+        type: 3}
+      propertyPath: m_Name
+      value: torche_murale
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b63e5e4045c215f4eae0523fdce88f1f, type: 3}
 --- !u!1001 &370163461
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -921,74 +989,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b6cb309dee5e5e44ae4507437c98835, type: 3}
---- !u!1001 &611668329
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6330689500288514446, guid: 82e214079607a874cb36b4fcd4a80bd2,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.082
-      objectReference: {fileID: 0}
-    - target: {fileID: 6330689500288514446, guid: 82e214079607a874cb36b4fcd4a80bd2,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.1638056
-      objectReference: {fileID: 0}
-    - target: {fileID: 6330689500288514446, guid: 82e214079607a874cb36b4fcd4a80bd2,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -7.517
-      objectReference: {fileID: 0}
-    - target: {fileID: 6330689500288514446, guid: 82e214079607a874cb36b4fcd4a80bd2,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.919075
-      objectReference: {fileID: 0}
-    - target: {fileID: 6330689500288514446, guid: 82e214079607a874cb36b4fcd4a80bd2,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6330689500288514446, guid: 82e214079607a874cb36b4fcd4a80bd2,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6330689500288514446, guid: 82e214079607a874cb36b4fcd4a80bd2,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.3940828
-      objectReference: {fileID: 0}
-    - target: {fileID: 6330689500288514446, guid: 82e214079607a874cb36b4fcd4a80bd2,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6330689500288514446, guid: 82e214079607a874cb36b4fcd4a80bd2,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6330689500288514446, guid: 82e214079607a874cb36b4fcd4a80bd2,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 46.418
-      objectReference: {fileID: 0}
-    - target: {fileID: 6670095083486683956, guid: 82e214079607a874cb36b4fcd4a80bd2,
-        type: 3}
-      propertyPath: m_Name
-      value: torche
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 82e214079607a874cb36b4fcd4a80bd2, type: 3}
 --- !u!1001 &784836082
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3494,4 +3494,4 @@ SceneRoots:
   - {fileID: 357991562820174672}
   - {fileID: 1991700593}
   - {fileID: 2024859694}
-  - {fileID: 611668329}
+  - {fileID: 255788926}
