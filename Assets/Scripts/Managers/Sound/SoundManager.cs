@@ -170,6 +170,7 @@ public class SoundManager : MonoBehaviour
     public static void PlayMusic(SoundBank.Sound audioClip)
     {
         m_instance.m_musicAudioSource.clip = audioClip.clip;
+        m_instance.m_musicAudioSource.volume = audioClip.volume;
         m_instance.m_musicAudioSource.loop = true;
         m_instance.m_musicAudioSource.Play();
     }   
