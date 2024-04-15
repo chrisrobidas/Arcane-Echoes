@@ -16,17 +16,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: aaa24a9c3d58a9d48a2e03cd09c9eae7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -84.369
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aaa24a9c3d58a9d48a2e03cd09c9eae7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -22.824
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aaa24a9c3d58a9d48a2e03cd09c9eae7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 28.777
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aaa24a9c3d58a9d48a2e03cd09c9eae7,
         type: 3}
@@ -723,7 +723,7 @@ MonoBehaviour:
   m_canNOTBeSummonedColor: {r: 1, g: 0, b: 0, a: 1}
   m_isLethal: 1
   m_hp: 4
-  m_armingTime: 0
+  m_armingTime: 0.1
   m_deathEffect: {fileID: 7053385775836331393, guid: 47169fdfe2be3e94699bffa2d17430e0,
     type: 3}
   m_cloneLifeTime: 60

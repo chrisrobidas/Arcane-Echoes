@@ -1713,7 +1713,7 @@ MonoBehaviour:
   m_canNOTBeSummonedColor: {r: 1, g: 0, b: 0, a: 1}
   m_isLethal: 1
   m_hp: 4
-  m_armingTime: 0
+  m_armingTime: 0.1
   m_deathEffect: {fileID: 7053385775836331393, guid: 47169fdfe2be3e94699bffa2d17430e0,
     type: 3}
   m_cloneLifeTime: 60
