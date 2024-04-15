@@ -152,7 +152,9 @@ public class ObjectSummoning : MonoBehaviour
 
             m_summonedObject.GetComponent<Rigidbody>().isKinematic = true;
             m_summonedObject.GetComponent<Collider>().enabled = false;
-            m_summonedObject.GetComponent<SummonableObject>().m_playerObjectSummoning = this;
+            SummonableObject summonableObject = m_summonedObject.GetComponent<SummonableObject>();
+            summonableObject.OnSummon();
+            summonableObject.m_playerObjectSummoning = this;
             m_summonedObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             m_summonedObject.transform.SetParent(m_objectHoldPoint);
             LeanTween.moveLocal(m_summonedObject, m_objectHoldPoint.localPosition, 1f).setEase(LeanTweenType.easeOutElastic).setOnComplete(AnimationOver);

@@ -92,6 +92,17 @@ public class SummonableObject : MonoBehaviour
         }
     }
 
+    public void OnSummon()
+    {
+        foreach (Material material in GetComponent<Renderer>().materials)
+        {
+            if (material.HasProperty("_Summoned"))
+            {
+                material.SetFloat("_Summoned", 1);
+            }
+        }
+    }
+
     public void OnDrop()
     {
         m_isSummoned = false;
