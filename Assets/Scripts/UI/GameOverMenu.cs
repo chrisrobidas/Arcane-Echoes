@@ -8,7 +8,7 @@ public class GameOverMenu : GameStateResponsiveMenu
 
     public void OnRetryButton()
     {
-        GameManager.PlayGame();
+        GameManager.RestartGame();
     }
 
     public void OnMainMenuButton()
