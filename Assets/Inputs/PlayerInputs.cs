@@ -213,6 +213,15 @@ public partial class @PlayerInputsAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Delete"",
+                    ""type"": ""Button"",
+                    ""id"": ""e8646a71-b758-43eb-a29b-b464766b7812"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -270,6 +279,17 @@ public partial class @PlayerInputsAction: IInputActionCollection2, IDisposable
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c50d963c-e12e-4280-bb17-1ae8cef6a4ac"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Delete"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -834,6 +854,7 @@ public partial class @PlayerInputsAction: IInputActionCollection2, IDisposable
         m_PlayerSummoning_Summon = m_PlayerSummoning.FindAction("Summon", throwIfNotFound: true);
         m_PlayerSummoning_Project = m_PlayerSummoning.FindAction("Project", throwIfNotFound: true);
         m_PlayerSummoning_Rotate = m_PlayerSummoning.FindAction("Rotate", throwIfNotFound: true);
+        m_PlayerSummoning_Delete = m_PlayerSummoning.FindAction("Delete", throwIfNotFound: true);
         // PauseInput
         m_PauseInput = asset.FindActionMap("PauseInput", throwIfNotFound: true);
         m_PauseInput_Pause = m_PauseInput.FindAction("Pause", throwIfNotFound: true);
@@ -1029,6 +1050,7 @@ public partial class @PlayerInputsAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerSummoning_Summon;
     private readonly InputAction m_PlayerSummoning_Project;
     private readonly InputAction m_PlayerSummoning_Rotate;
+    private readonly InputAction m_PlayerSummoning_Delete;
     public struct PlayerSummoningActions
     {
         private @PlayerInputsAction m_Wrapper;
@@ -1036,6 +1058,7 @@ public partial class @PlayerInputsAction: IInputActionCollection2, IDisposable
         public InputAction @Summon => m_Wrapper.m_PlayerSummoning_Summon;
         public InputAction @Project => m_Wrapper.m_PlayerSummoning_Project;
         public InputAction @Rotate => m_Wrapper.m_PlayerSummoning_Rotate;
+        public InputAction @Delete => m_Wrapper.m_PlayerSummoning_Delete;
         public InputActionMap Get() { return m_Wrapper.m_PlayerSummoning; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1054,6 +1077,9 @@ public partial class @PlayerInputsAction: IInputActionCollection2, IDisposable
             @Rotate.started += instance.OnRotate;
             @Rotate.performed += instance.OnRotate;
             @Rotate.canceled += instance.OnRotate;
+            @Delete.started += instance.OnDelete;
+            @Delete.performed += instance.OnDelete;
+            @Delete.canceled += instance.OnDelete;
         }
 
         private void UnregisterCallbacks(IPlayerSummoningActions instance)
@@ -1067,6 +1093,9 @@ public partial class @PlayerInputsAction: IInputActionCollection2, IDisposable
             @Rotate.started -= instance.OnRotate;
             @Rotate.performed -= instance.OnRotate;
             @Rotate.canceled -= instance.OnRotate;
+            @Delete.started -= instance.OnDelete;
+            @Delete.performed -= instance.OnDelete;
+            @Delete.canceled -= instance.OnDelete;
         }
 
         public void RemoveCallbacks(IPlayerSummoningActions instance)
@@ -1264,6 +1293,7 @@ public partial class @PlayerInputsAction: IInputActionCollection2, IDisposable
         void OnSummon(InputAction.CallbackContext context);
         void OnProject(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
+        void OnDelete(InputAction.CallbackContext context);
     }
     public interface IPauseInputActions
     {

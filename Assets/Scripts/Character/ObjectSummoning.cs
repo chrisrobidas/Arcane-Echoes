@@ -57,6 +57,7 @@ public class ObjectSummoning : MonoBehaviour
         m_playerInputsAction.PlayerSummoning.Enable();
         m_playerInputsAction.PlayerSummoning.Summon.performed += SummonObject;
         m_playerInputsAction.PlayerSummoning.Project.performed += ProjectSummonedObject;
+        m_playerInputsAction.PlayerSummoning.Delete.performed += DeleteObject;
 
         m_objectHoldPoint.Translate(m_objectHoldPoint.forward * m_sPointForwardDistance);
     }
@@ -105,6 +106,15 @@ public class ObjectSummoning : MonoBehaviour
         else
         {
             m_summonTimer -= Time.deltaTime;
+        }
+    }
+
+    private void DeleteObject(InputAction.CallbackContext context)
+    {
+        if (m_summonedObject != null)
+        {
+            Destroy(m_summonedObject);
+            m_summonedObject = null;
         }
     }
 
