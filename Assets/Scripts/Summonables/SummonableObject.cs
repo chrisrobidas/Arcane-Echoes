@@ -124,7 +124,11 @@ public class SummonableObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy") & m_armingTime <= 0f & m_isLethal)
+        if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            m_isInhibited = true;
+        }
+        if (other.CompareTag("Enemy") & m_armingTime <= 0f & !m_isInhibited)
         {
             Instantiate(m_deathEffect, other.transform.position, other.transform.rotation, null);
             Destroy(other.gameObject);
