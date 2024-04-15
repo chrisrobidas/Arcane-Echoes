@@ -16,6 +16,7 @@ public static class GameManager
 
     public static void OpenMainMenu()
     {
+        Time.timeScale = 1f;
         SoundManager.PlayMusic(SoundManager.SoundBank.mainMenuMusic);
         m_gameStateMachine.RemoveState(EGameState.Pause);
         SceneLoader.LoadScenes(EScenes.MainMenuBackground, EScenes.MainMenuBackground | EScenes.UI, false,
@@ -93,6 +94,7 @@ public static class GameManager
 
     public static void TriggerVictory()
     {
+        Time.timeScale = 0f;
         m_gameStateMachine.ChangeState(EGameState.Victory);
     }
 
@@ -102,7 +104,7 @@ public static class GameManager
         {
             SoundManager.PlaySound(SoundManager.SoundBank.deathSound);
         }
-
+        Time.timeScale = 0f;
         IsGameOver = true;
         m_gameStateMachine.ChangeState(EGameState.GameOver);
     }

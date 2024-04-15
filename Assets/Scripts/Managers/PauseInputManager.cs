@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.Timeline.AnimationPlayableAsset;
 
 public class PauseInputManager : MonoBehaviour
 {
@@ -15,36 +16,27 @@ public class PauseInputManager : MonoBehaviour
     }
     private void OnEnable()
     {
-        GameManager.GameStateMachine.OnStateEnter += OnGameStateEnter;
-        GameManager.GameStateMachine.OnStateExit += OnGameStatExit;
+        GameManager.GameStateMachine.OnStateEnter += (gameState) => { OnGameStateChange( gameState, true); };
+        GameManager.GameStateMachine.OnStateExit += (gameState) => { OnGameStateChange(gameState, false); };
     }
 
     private void OnDisable()
     {
-        GameManager.GameStateMachine.OnStateEnter -= OnGameStateEnter;
-        GameManager.GameStateMachine.OnStateExit -= OnGameStatExit;
+        GameManager.GameStateMachine.OnStateEnter -= (gameState) => { OnGameStateChange(gameState, true); };
+        GameManager.GameStateMachine.OnStateExit -= (gameState) => { OnGameStateChange(gameState, false); };
     }
 
-    void OnGameStateEnter(EGameState gameState)
+    void OnGameStateChange(EGameState gameState, bool enter)
     {
-        if (gameState.HasFlag(EGameState.Game))
+        if (gameState == EGameState.Game)
         {
-            EnablePauseInput(true);
-        }
+            bool enable = enter ? true : false;
+            EnablePauseInput(enable);
 #if UNITY_EDITOR
-        Debug.Log($"<b>[PauseInputManager]</b> Pause input enabled");
+            string enableLog = enable ? "enabled" : "disabled";
+            Debug.Log($"<b>[PauseInputManager]</b> Pause input {enableLog}");
 #endif
-    }
-
-    void OnGameStatExit(EGameState gameState)
-    {
-        if (gameState.HasFlag(EGameState.Game))
-        {
-            EnablePauseInput(false);
         }
-#if UNITY_EDITOR
-        Debug.Log($"<b>[PauseInputManager]</b> Pause input disabled");
-#endif
     }
 
     private void EnablePauseInput(bool enable)

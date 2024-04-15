@@ -16,27 +16,26 @@ public class CursorManager : MonoBehaviour
 
     void OnGameStateChange(EGameState gameState, bool enter)
     {
+        CursorLockMode lockMode = CursorLockMode.None;
         switch (gameState)
         {
-             //case EGameState.Game:
-             //   Cursor.lockState = !enter ? CursorLockMode.None : CursorLockMode.Locke;
-             //   return;
+            case EGameState.Game:
+                enter = !enter;
+                break;
             case EGameState.MainMenu:
-                break;
             case EGameState.Pause:
-                break;
             case EGameState.Victory:
-                break;
             case EGameState.GameOver:
                 break;
             default:
-                return;
+                break;
         }
-        CursorLockMode lockMode = !enter ? CursorLockMode.Locked : CursorLockMode.None;
+        lockMode = enter ? CursorLockMode.None : CursorLockMode.Locked;
 #if UNITY_EDITOR
 
         Debug.Log($"<b>[CursorManager]</b> Set cursor to {lockMode}");
 #endif
         Cursor.lockState = lockMode;
+       
     }
 }
