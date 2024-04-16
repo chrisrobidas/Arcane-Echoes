@@ -84,7 +84,7 @@ MonoBehaviour:
   m_initialPoolCapacity: 10
   m_maxPoolSize: 10
   m_collectionChecks: 1
-  audioMixer: {fileID: 24100000, guid: 170546c680527ac4f9a1a293e4a5e96f, type: 2}
+  m_audioMixer: {fileID: 24100000, guid: 170546c680527ac4f9a1a293e4a5e96f, type: 2}
   m_customSpacializationValue: 0.9
   m_masterVolume: 1
   m_gameVolume: 1

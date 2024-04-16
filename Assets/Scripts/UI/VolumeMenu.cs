@@ -23,13 +23,13 @@ public class VolumeMenu : GameStateResponsiveMenu
     protected override void OnEnable()
     {
         base.OnEnable();
-        masterSlider.value = PlayerPrefs.GetFloat(SoundManager.masterVolumeParamName, 1);
+        masterSlider.value = PlayerPrefs.GetFloat(SoundManager.s_masterVolumeParamName, 1);
         masterSlider.onValueChanged.AddListener((value) => onMasterVolumeChanged?.Invoke(value));
 
-        gameSlider.value = PlayerPrefs.GetFloat(SoundManager.gameVolumeParamName, 1);
+        gameSlider.value = PlayerPrefs.GetFloat(SoundManager.s_gameVolumeParamName, 1);
         gameSlider.onValueChanged.AddListener((value) => onGameVolumeChanged?.Invoke(value));
 
-        musicSlider.value = PlayerPrefs.GetFloat(SoundManager.musicVolumeParamName, 1);
+        musicSlider.value = PlayerPrefs.GetFloat(SoundManager.s_musicVolumeParamName, 1);
         musicSlider.onValueChanged.AddListener((value) => onMusicVolumeChanged?.Invoke(value));
     }
 

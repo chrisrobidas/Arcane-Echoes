@@ -21,18 +21,18 @@ public class SoundManager : MonoBehaviour
     private ObjectPool<SoundEmitter> m_pool;
 
     [Header("Audio control")]
-    [SerializeField] private AudioMixer audioMixer = default;
+    [SerializeField] private AudioMixer m_audioMixer = default;
     [SerializeField] [Range(0,1)]private float m_customSpacializationValue = 1f;
 
     [Range(0.0001f, 1f)]
     [SerializeField] private float m_masterVolume = 1f;
-    public static readonly string masterVolumeParamName = "MasterVolume";
+    public static readonly string s_masterVolumeParamName = "MasterVolume";
     [Range(0.0001f, 1f)]
     [SerializeField] private float m_gameVolume = 1f;
-    public static readonly string gameVolumeParamName = "GameVolume";
+    public static readonly string s_gameVolumeParamName = "GameVolume";
     [Range(0.0001f, 1f)]
     [SerializeField] private float m_musicVolume = 1f;
-    public static readonly string musicVolumeParamName = "MusicVolume";
+    public static readonly string s_musicVolumeParamName = "MusicVolume";
 
     #region Initialization
     private void Awake()
@@ -47,10 +47,6 @@ public class SoundManager : MonoBehaviour
         }
         m_musicAudioSource = GetComponent<AudioSource>();
 
-        m_masterVolume = PlayerPrefs.GetFloat(masterVolumeParamName);
-        m_gameVolume = PlayerPrefs.GetFloat(gameVolumeParamName);
-        m_musicVolume = PlayerPrefs.GetFloat(musicVolumeParamName);
-
         InitializeObjectPool();
     }
 
@@ -58,24 +54,31 @@ public class SoundManager : MonoBehaviour
     {
         if (Application.isPlaying)
         {
-            SetGroupVolume(masterVolumeParamName, m_masterVolume);
-            SetGroupVolume(gameVolumeParamName, m_gameVolume);
-            SetGroupVolume(musicVolumeParamName, m_musicVolume);
+            SetGroupVolume(s_masterVolumeParamName, m_masterVolume);
+            SetGroupVolume(s_gameVolumeParamName, m_gameVolume);
+            SetGroupVolume(s_musicVolumeParamName, m_musicVolume);
         }
     }
 
     private void OnEnable()
     {
         VolumeMenu.onMasterVolumeChanged += SetMasterVolume;
-        VolumeMenu.onGameVolumeChanged += SetEffectsVolume;
+        VolumeMenu.onGameVolumeChanged += SetGameVolume;
         VolumeMenu.onMusicVolumeChanged += SetMusicVolume;
     }
 
     private void OnDisable()
     {
         VolumeMenu.onMasterVolumeChanged -= SetMasterVolume;
-        VolumeMenu.onGameVolumeChanged -= SetEffectsVolume;
+        VolumeMenu.onGameVolumeChanged -= SetGameVolume;
         VolumeMenu.onMusicVolumeChanged -= SetMusicVolume;
+    }
+
+    private void Start()
+    {
+        SetMasterVolume(PlayerPrefs.GetFloat(s_masterVolumeParamName, 1));
+        SetGameVolume(PlayerPrefs.GetFloat(s_gameVolumeParamName, 1));
+        SetMusicVolume(PlayerPrefs.GetFloat(s_gameVolumeParamName, 1));
     }
     #endregion
 
@@ -116,8 +119,7 @@ public class SoundManager : MonoBehaviour
     #region VolumeManagement
     public void SetGroupVolume(string parameterName, float normalizedVolume)
     {
-        bool volumeSet = audioMixer.SetFloat(parameterName, NormalizedToMixerValue(normalizedVolume));
-        if (!volumeSet)
+        if (!m_audioMixer.SetFloat(parameterName, NormalizedToMixerValue(normalizedVolume)))
         {
 #if UNITY_EDITOR
             Debug.LogError("The AudioMixer parameter was not found");
@@ -127,29 +129,29 @@ public class SoundManager : MonoBehaviour
 
     private float NormalizedToMixerValue(float normalizedValue)
     {
-        //return (normalizedValue - 1f) * 80f;
+        normalizedValue = normalizedValue > 0 ? normalizedValue : 0.0001f;
         return Mathf.Log10(normalizedValue) * 20;
     }
 
     void SetMasterVolume(float value)
     {
         m_masterVolume = value;
-        PlayerPrefs.SetFloat(masterVolumeParamName, m_masterVolume);
-        SetGroupVolume(masterVolumeParamName, m_masterVolume);
+        PlayerPrefs.SetFloat(s_masterVolumeParamName, m_masterVolume);
+        SetGroupVolume(s_masterVolumeParamName, m_masterVolume);
     }
 
-    void SetEffectsVolume(float value)
+    void SetGameVolume(float value)
     {
         m_gameVolume = value;
-        PlayerPrefs.SetFloat(gameVolumeParamName, m_gameVolume);
-        SetGroupVolume(gameVolumeParamName, m_gameVolume);
+        PlayerPrefs.SetFloat(s_gameVolumeParamName, m_gameVolume);
+        SetGroupVolume(s_gameVolumeParamName, m_gameVolume);
     }
 
     void SetMusicVolume(float value)
     {
         m_musicVolume = value;
-        PlayerPrefs.SetFloat(musicVolumeParamName, m_musicVolume);
-        SetGroupVolume(musicVolumeParamName, m_musicVolume);
+        PlayerPrefs.SetFloat(s_musicVolumeParamName, m_musicVolume);
+        SetGroupVolume(s_musicVolumeParamName, m_musicVolume);
     }
     #endregion
 
