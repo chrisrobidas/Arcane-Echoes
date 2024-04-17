@@ -370,6 +370,7 @@ GameObject:
   - component: {fileID: 704310930}
   - component: {fileID: 704310933}
   - component: {fileID: 704310932}
+  - component: {fileID: 704310934}
   m_Layer: 5
   m_Name: LoadingScreenBackground
   m_TagString: Untagged
@@ -435,6 +436,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 704310929}
   m_CullTransparentMesh: 1
+--- !u!225 &704310934
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704310929}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &1005101403
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -768,9 +781,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c06102de0862f74696c580395721dd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_loadingScreen: {fileID: 704310929}
+  m_loadingScreen: {fileID: 704310934}
   m_loadingBar: {fileID: 1394835752}
   m_fillSpeed: 0.5
+  m_fadeInOutDuration: 0.75
 --- !u!1 &1728411648
 GameObject:
   m_ObjectHideFlags: 0

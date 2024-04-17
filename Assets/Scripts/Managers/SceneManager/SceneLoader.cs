@@ -9,6 +9,7 @@ public class SceneLoader : MonoBehaviour
 {
     public static event Action<EScenes> OnSceneLoaded;
     public static event Action<EScenes> OnSceneUnload;
+    public static event Action<bool> FadeInOutScreen;
     public static event Action OnSceneGroupLoadStart;
     public static event Action OnSceneGroupLoadEnd;
 
@@ -17,6 +18,9 @@ public class SceneLoader : MonoBehaviour
 
     public static async void LoadScenes(EScenes activeScene, EScenes scenesToLoad, bool reloadDuplicate, Action actionAfterLoad = null)
     {
+        FadeInOutScreen?.Invoke(true);
+        Debug.Log(SceneLoadingScreen.FadeInOutDuration);
+        await Task.Delay(TimeSpan.FromSeconds(SceneLoadingScreen.FadeInOutDuration));
         OnSceneGroupLoadStart?.Invoke();
 
         //Add active scene if not present in scenes to load
@@ -109,6 +113,7 @@ public class SceneLoader : MonoBehaviour
 
         actionAfterLoad?.Invoke();
         OnSceneGroupLoadEnd?.Invoke();
+        FadeInOutScreen?.Invoke(false);
     }
 
     public static async Task UnloadScenes()
