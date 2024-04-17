@@ -19,7 +19,6 @@ public class SceneLoader : MonoBehaviour
     public static async void LoadScenes(EScenes activeScene, EScenes scenesToLoad, bool reloadDuplicate, Action actionAfterLoad = null)
     {
         FadeInOutScreen?.Invoke(true);
-        Debug.Log(SceneLoadingScreen.FadeInOutDuration);
         await Task.Delay(TimeSpan.FromSeconds(SceneLoadingScreen.FadeInOutDuration));
         OnSceneGroupLoadStart?.Invoke();
 
