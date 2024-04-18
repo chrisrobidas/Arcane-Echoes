@@ -1,9 +1,8 @@
 using System;
-using System.Collections;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Pool;
+using UnityEngine.UIElements;
 using static SoundBank;
 
 public class SoundManager : MonoBehaviour
@@ -13,6 +12,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] SoundBank soundBank;
 
     private AudioListener m_audioListener;
+    private AudioListenerAnchor m_audioListenerAnchor = null;
+    private bool m_audioListenerAttached = false;
 
     [Header("SoundEmitter ObjectPool")]
     [SerializeField] private SoundEmitter m_soundEmitterPrefab;
@@ -67,12 +68,6 @@ public class SoundManager : MonoBehaviour
         InitializeMusicSources();
     }
 
-    private void InitializeAudioListener()
-    {
-        GameObject audioListener = new GameObject("AudioListener");
-        m_audioListener = audioListener.AddComponent<AudioListener>();
-        audioListener.transform.parent = transform;
-    }
 
     void OnValidate()
     {
@@ -105,6 +100,13 @@ public class SoundManager : MonoBehaviour
         SetMusicVolume(PlayerPrefs.GetFloat(s_gameVolumeParamName, 1));
     }
 
+    private void InitializeAudioListener()
+    {
+        GameObject audioListener = new GameObject("AudioListener");
+        m_audioListener = audioListener.AddComponent<AudioListener>();
+        audioListener.transform.parent = transform;
+    }
+
     private void InitializeMusicSources()
     {
         string musicAmgName = "Music";
@@ -132,26 +134,57 @@ public class SoundManager : MonoBehaviour
 
     private void Update()
     {
-        // Move listener if transform referenced
-
-        // Update music fade
-        if (m_isFading)
-        {
-            if (m_firstActive ? m_fadeRatio > 0 : m_fadeRatio < 1)
-            {
-                m_fadeRatio += (m_firstActive ? -1 : 1) * Time.deltaTime * m_musicFadeSpeed;
-                m_musicAudioSources[m_activeMusicSourceIndex].volume = Mathf.Lerp(0, m_fadeActiveTargetVolume, (m_firstActive ? 1 - m_fadeRatio : m_fadeRatio));
-                m_musicAudioSources[m_inactiveMusicSourceIndex].volume = Mathf.Lerp(m_fadeInactiveBaseVolume, 0, m_fadeRatio);
-            }
-            else
-            {
-                m_isFading = false;
-                m_fadeRatio = m_activeMusicSourceIndex;
-                DisableMusicSource(m_inactiveMusicSourceIndex);
-            }
-        }
-        
+        HandleAudioListener();
+        HandleMusicFading();
     }
+
+    #region AudioListenerAnchor
+    public static void AttachAudioListener(AudioListenerAnchor anchor)
+    {
+        m_instance?.AttachAudioListenerInternal(anchor);
+    }
+
+    private void AttachAudioListenerInternal(AudioListenerAnchor anchor)
+    {
+        m_audioListenerAttached = true;
+        m_audioListenerAnchor = anchor; 
+        m_audioListener.transform.position = m_audioListenerAnchor.Position;
+        m_audioListener.transform.rotation = m_audioListenerAnchor.Rotation;
+    }
+
+    public static void DetachAudioListener()
+    {
+        m_instance?.DetachAudioListenerInternal();
+    }
+
+    private void DetachAudioListenerInternal()
+    {
+        m_audioListener.transform.position = Vector3.zero;
+        m_audioListener.transform.rotation = Quaternion.identity;
+        m_audioListenerAttached = false;
+    }
+
+    private void HandleAudioListener()
+    {
+        if (!m_audioListenerAttached)
+        {
+            return;
+        }
+
+        if (m_audioListenerAnchor == null)
+        {
+            DetachAudioListenerInternal();
+            return;
+        }
+
+        if (!m_audioListenerAnchor.IsStatic)
+        {
+            m_audioListener.transform.position = m_audioListenerAnchor.Position;
+            m_audioListener.transform.rotation = m_audioListenerAnchor.Rotation;
+        }
+
+    }
+    #endregion
 
     #region ObjectPool
     private void InitializeSoundEmitterObjectPool()
@@ -191,7 +224,7 @@ public class SoundManager : MonoBehaviour
     #endregion
 
     #region VolumeManagement
-    public void SetGroupVolume(string parameterName, float normalizedVolume)
+    private void SetGroupVolume(string parameterName, float normalizedVolume)
     {
         if (!m_audioMixer.SetFloat(parameterName, NormalizedToMixerValue(normalizedVolume)))
         {
@@ -207,21 +240,21 @@ public class SoundManager : MonoBehaviour
         return Mathf.Log10(normalizedValue) * 20;
     }
 
-    void SetMasterVolume(float value)
+    private void SetMasterVolume(float value)
     {
         m_masterVolume = value;
         PlayerPrefs.SetFloat(s_masterVolumeParamName, m_masterVolume);
         SetGroupVolume(s_masterVolumeParamName, m_masterVolume);
     }
 
-    void SetGameVolume(float value)
+    private void SetGameVolume(float value)
     {
         m_gameVolume = value;
         PlayerPrefs.SetFloat(s_gameVolumeParamName, m_gameVolume);
         SetGroupVolume(s_gameVolumeParamName, m_gameVolume);
     }
 
-    void SetMusicVolume(float value)
+    private void SetMusicVolume(float value)
     {
         m_musicVolume = value;
         PlayerPrefs.SetFloat(s_musicVolumeParamName, m_musicVolume);
@@ -242,6 +275,18 @@ public class SoundManager : MonoBehaviour
         soundEmitter.PlaySound(sound);
     }
 
+    [ContextMenu("Test0")]
+    public void Test0()
+    {
+        PlaySoundAt(SoundBank.deathSound, Vector3.zero);
+    }
+
+    [ContextMenu("Test1")]
+    public void Test()
+    {
+        PlaySoundAt(SoundBank.deathSound, Vector3.right * 50);
+    }
+
     public static void PlayMusic(Sound audioClip)
     {
         m_instance?.PlayMusicInternal(audioClip);
@@ -250,13 +295,13 @@ public class SoundManager : MonoBehaviour
     private void PlayMusicInternal(Sound sound)
     {
         m_isFading = true;
-        Debug.Log(m_isFading);
         m_firstActive = !m_firstActive;
         m_fadeActiveTargetVolume = sound.volume;
         m_fadeInactiveBaseVolume = m_musicAudioSources[m_inactiveMusicSourceIndex].volume;
         EnableMusicSource(m_activeMusicSourceIndex, sound.clip);
     }
 
+    #region MusicFading
     private void EnableMusicSource(int index, AudioClip clip)
     {
         if (m_musicAudioSources[index] != null)
@@ -265,6 +310,25 @@ public class SoundManager : MonoBehaviour
             m_musicAudioSources[index].clip = clip;
             m_musicAudioSources[index].volume = 0;
             m_musicAudioSources[index].Play();
+        }
+    }
+
+    private void HandleMusicFading()
+    {
+        if (m_isFading)
+        {
+            if (m_firstActive ? m_fadeRatio > 0 : m_fadeRatio < 1)
+            {
+                m_fadeRatio += (m_firstActive ? -1 : 1) * Time.deltaTime * m_musicFadeSpeed;
+                m_musicAudioSources[m_activeMusicSourceIndex].volume = Mathf.Lerp(0, m_fadeActiveTargetVolume, (m_firstActive ? 1 - m_fadeRatio : m_fadeRatio));
+                m_musicAudioSources[m_inactiveMusicSourceIndex].volume = Mathf.Lerp(m_fadeInactiveBaseVolume, 0, m_fadeRatio);
+            }
+            else
+            {
+                m_isFading = false;
+                m_fadeRatio = m_activeMusicSourceIndex;
+                DisableMusicSource(m_inactiveMusicSourceIndex);
+            }
         }
     }
 
@@ -280,16 +344,5 @@ public class SoundManager : MonoBehaviour
     }
     #endregion
 
-#if UNITY_EDITOR
-    [ContextMenu("Test sound")]
-    public async void TestSound()
-    {
-        PlaySound(soundBank.impactSound);
-        await Task.Delay(100);
-        PlaySoundAt(soundBank.impactSound, transform.position + Vector3.right);
-        await Task.Delay(1000);
-        PlaySoundAt(soundBank.impactSound, transform.position + Vector3.left * 100);
-        //PlaySound(GetComponent<AudioSource>(), soundBank.swapColorSound);
-    }
-#endif
+    #endregion
 }

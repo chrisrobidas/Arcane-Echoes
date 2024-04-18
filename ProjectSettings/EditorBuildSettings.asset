@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/BaseLevel.unity
     guid: a8c0edafe7877f14db9939235f524e87
   - enabled: 0
-    path: Assets/Scenes/Scene_Game.unity
+    path: Assets/Scenes/Scene_Fergal.unity
     guid: 4022f325a51300a4fb834ec22c77237d
   - enabled: 1
     path: Assets/Scenes/Scene_UI.unity
