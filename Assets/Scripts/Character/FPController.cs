@@ -133,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Physics.CheckSphere(groundCheck.position, groundDistanceCheck, groundMask) & gravityForce.y < 0f)
+        if (Physics.CheckSphere(groundCheck.position, groundDistanceCheck, groundMask) && gravityForce.y < 0f)
         {
             isGrounded = true;
             Move();
@@ -155,7 +155,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float playerSpeedModifier = 1f;
 
-        if (sprinting > 0f & isGrounded)
+        if (sprinting > 0f && isGrounded)
         {
             playerSpeedModifier *= sprintSpeedMultiplier;
         }

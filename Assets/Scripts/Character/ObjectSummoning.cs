@@ -66,7 +66,7 @@ public class ObjectSummoning : MonoBehaviour
 
     void Update()
     {
-        if (m_summonTimer <= 0f & m_summonedObject == null)
+        if (m_summonTimer <= 0f && m_summonedObject == null)
         {
             Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
             RaycastHit hit;
@@ -118,7 +118,7 @@ public class ObjectSummoning : MonoBehaviour
                 m_summonedObject.transform.Translate(Vector3.forward * translation * m_translationSpeed * Time.deltaTime, transform);
             }
 
-            if (m_playerInputsAction.PlayerSummoning.Summon.WasReleasedThisFrame() & m_summonedObject.GetComponent<SummonableObject>().IsInstanciable)
+            if (m_playerInputsAction.PlayerSummoning.Summon.WasReleasedThisFrame() && m_summonedObject.GetComponent<SummonableObject>().IsInstanciable)
             {
                 DropSummonedObject();
             }
@@ -140,7 +140,7 @@ public class ObjectSummoning : MonoBehaviour
 
     private void SummonObject(InputAction.CallbackContext context)
     {
-        if (m_highlightedObject != null & m_summonTimer <= 0f)
+        if (m_highlightedObject != null && m_summonTimer <= 0f)
         {
             SoundManager.PlaySound(SoundManager.SoundBank.summonSound);
             playerAnimator.SetTrigger("HoldTrigger");
@@ -165,7 +165,7 @@ public class ObjectSummoning : MonoBehaviour
 
     private void ProjectSummonedObject(InputAction.CallbackContext context)
     {
-        if (m_summonedObject != null & m_summonedObject.GetComponent<SummonableObject>().IsInstanciable)
+        if (m_summonedObject != null && m_summonedObject.GetComponent<SummonableObject>().IsInstanciable)
         {
             SoundManager.PlaySound(SoundManager.SoundBank.pushSound);
             playerAnimator.SetTrigger("ProjectTrigger");

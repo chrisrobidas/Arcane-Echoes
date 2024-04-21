@@ -64,7 +64,7 @@ public class SummonableObject : MonoBehaviour
             m_cloneLifeTime -= Time.deltaTime;
             if (m_cloneLifeTime <= 0f) { Destroy(gameObject); }
         }
-        if (m_isLethal & !m_isInhibited)
+        if (m_isLethal && !m_isInhibited)
         {
             m_armingTime -= Time.deltaTime;
         }
@@ -142,7 +142,7 @@ public class SummonableObject : MonoBehaviour
         {
             m_isInhibited = true;
         }
-        if (other.CompareTag("Enemy") & m_armingTime <= 0f & !m_isInhibited)
+        if (other.CompareTag("Enemy") && m_armingTime <= 0f && !m_isInhibited)
         {
             Instantiate(m_enemyDeathEffect, other.transform.position, other.transform.rotation, null);
             Destroy(other.gameObject);
