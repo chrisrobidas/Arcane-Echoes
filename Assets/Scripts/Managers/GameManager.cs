@@ -25,6 +25,7 @@ public static class GameManager
 
     public static void PlayGame()
     {
+        IsGameOver = false;
         SoundManager.PlayMusic(SoundManager.SoundBank.gameMusic);
         m_gameStateMachine.RemoveState(EGameState.Pause);
         SceneLoader.LoadScenes(EScenes.Game, EScenes.Game | EScenes.UI, false,
