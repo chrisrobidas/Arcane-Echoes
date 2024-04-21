@@ -23,7 +23,10 @@ public class MeleeEnemy : Enemy
 
             if (_elapsedTimeInAttackState >= _animator.GetCurrentAnimatorStateInfo(0).length)
             {
-                GameManager.TriggerGameOver();
+                if (!GameManager.IsGameOver)
+                {
+                    GameManager.TriggerGameOver();
+                }
             }
         }
         else

@@ -38,7 +38,10 @@ public class Projectile : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            GameManager.TriggerGameOver();
+            if (!GameManager.IsGameOver)
+            {
+                GameManager.TriggerGameOver();
+            }
         }
     }
 }
