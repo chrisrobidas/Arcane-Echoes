@@ -194,7 +194,10 @@ public class ObjectSummoning : MonoBehaviour
 
     public void SummonedObjectDestroyed()
     {
-        playerAnimator.SetTrigger("ResetTrigger");
+        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Hold"))
+        {
+            playerAnimator.SetTrigger("ResetTrigger");
+        }
         m_summonedObject = null;
     }
 
