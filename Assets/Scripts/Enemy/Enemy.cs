@@ -120,8 +120,9 @@ public abstract class Enemy : MonoBehaviour
         _agent.stoppingDistance = _stoppingDistanceFromPlayer;
         _agent.SetDestination(GameObject.FindWithTag("Player").transform.position);
 
-        if (IsAgentDestinationReached())
+        if (IsAtStoppingDistanceFromPlayer() || IsAgentDestinationReached())
         {
+            _agent.SetDestination(_agent.transform.position);
             StartAttacking();
         }
     }
