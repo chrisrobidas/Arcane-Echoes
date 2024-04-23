@@ -322,7 +322,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 72
-  groundDistanceCheck: 0.1
+  groundDistanceCheck: 0.1264
   baseSpeed: 5
   sprintSpeedMultiplier: 1.5
   crouchSpeedMultiplier: 0.25
