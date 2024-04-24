@@ -186,7 +186,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d61508f1ed3cdcc4eb998836076cbf6d, type: 2}
+      objectReference: {fileID: 2100000, guid: b2d2305e8088b004585cdbe7ba19a7f9, type: 2}
     - target: {fileID: 919132149155446097, guid: d9da1d35949b50d48a334b81c91fa966,
         type: 3}
       propertyPath: m_Name
@@ -1217,7 +1217,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d61508f1ed3cdcc4eb998836076cbf6d, type: 2}
+      objectReference: {fileID: 2100000, guid: b2d2305e8088b004585cdbe7ba19a7f9, type: 2}
     - target: {fileID: 919132149155446097, guid: d9da1d35949b50d48a334b81c91fa966,
         type: 3}
       propertyPath: m_Name
@@ -1502,7 +1502,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: b2d2305e8088b004585cdbe7ba19a7f9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1899,7 +1899,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: b2d2305e8088b004585cdbe7ba19a7f9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2318,7 +2318,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d61508f1ed3cdcc4eb998836076cbf6d, type: 2}
+      objectReference: {fileID: 2100000, guid: b2d2305e8088b004585cdbe7ba19a7f9, type: 2}
     - target: {fileID: 919132149155446097, guid: 961d9a96ebc86e14b8aa0f33a54e34b1,
         type: 3}
       propertyPath: m_Name
@@ -2789,7 +2789,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d61508f1ed3cdcc4eb998836076cbf6d, type: 2}
+      objectReference: {fileID: 2100000, guid: b2d2305e8088b004585cdbe7ba19a7f9, type: 2}
     - target: {fileID: 919132149155446097, guid: d9da1d35949b50d48a334b81c91fa966,
         type: 3}
       propertyPath: m_Name

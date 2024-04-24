@@ -81,16 +81,16 @@ public class SoundManager : MonoBehaviour
 
     private void OnEnable()
     {
-        VolumeMenu.onMasterVolumeChanged += SetMasterVolume;
-        VolumeMenu.onGameVolumeChanged += SetGameVolume;
-        VolumeMenu.onMusicVolumeChanged += SetMusicVolume;
+        SettingsMenu.onMasterVolumeChanged += SetMasterVolume;
+        SettingsMenu.onGameVolumeChanged += SetGameVolume;
+        SettingsMenu.onMusicVolumeChanged += SetMusicVolume;
     }
 
     private void OnDisable()
     {
-        VolumeMenu.onMasterVolumeChanged -= SetMasterVolume;
-        VolumeMenu.onGameVolumeChanged -= SetGameVolume;
-        VolumeMenu.onMusicVolumeChanged -= SetMusicVolume;
+        SettingsMenu.onMasterVolumeChanged -= SetMasterVolume;
+        SettingsMenu.onGameVolumeChanged -= SetGameVolume;
+        SettingsMenu.onMusicVolumeChanged -= SetMusicVolume;
     }
 
     private void Start()

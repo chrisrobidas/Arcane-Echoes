@@ -14,6 +14,7 @@ public class LookMouse : MonoBehaviour
     [Range(1f, 100f)]
     private float m_mouseSensitivity;
     public float MouseSensitivity => m_mouseSensitivity;
+    public static readonly string s_sensitivityParamName = "Sensitivity";
 
     private PlayerInputsAction playerInputsAction;
 
@@ -24,6 +25,7 @@ public class LookMouse : MonoBehaviour
     void Awake()
     {
         playerInputsAction = new PlayerInputsAction();
+        m_mouseSensitivity = PlayerPrefs.GetFloat(s_sensitivityParamName, 20);
     }
 
     private void OnEnable()
@@ -31,10 +33,12 @@ public class LookMouse : MonoBehaviour
         EnableInputs(true);
         GameManager.GameStateMachine.OnStateEnter += (gameState) => { OnGameStateChange(gameState, true); };
         GameManager.GameStateMachine.OnStateExit += (gameState) => { OnGameStateChange(gameState, false); };
+        SettingsMenu.onSensibilityChanged += SetSensitivity;
     }
 
     private void OnDisable()
     {
+        SettingsMenu.onSensibilityChanged -= SetSensitivity;
         GameManager.GameStateMachine.OnStateEnter -= (gameState) => { OnGameStateChange(gameState, true); };
         GameManager.GameStateMachine.OnStateExit -= (gameState) => { OnGameStateChange(gameState, false); };
         EnableInputs(false);
@@ -55,6 +59,12 @@ public class LookMouse : MonoBehaviour
         }
         //Disable inputs if in Pause/Victory/GameOver
         EnableInputs(!enter);
+    }
+
+    private void SetSensitivity(float value)
+    {
+        m_mouseSensitivity = value;
+        PlayerPrefs.SetFloat(s_sensitivityParamName, m_mouseSensitivity);
     }
 
     void EnableInputs(bool enable)
