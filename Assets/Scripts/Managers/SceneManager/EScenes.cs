@@ -12,7 +12,6 @@ public enum EScenes
     Game                = 1 << 1,
     UI                  = 1 << 2,
     MainMenuBackground  = 1 << 3,
-    Test                = 1 << 4,
 
     All                 = ~0
 }
