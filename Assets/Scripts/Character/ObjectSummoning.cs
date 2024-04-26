@@ -68,7 +68,8 @@ public class ObjectSummoning : MonoBehaviour
     {
         if (m_summonTimer <= 0f && m_summonedObject == null)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+            Vector2 screenCenter = new Vector2(Screen.width / 2, Screen.height / 2);
+            Ray ray = Camera.main.ScreenPointToRay(screenCenter);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, m_maxSummonableDistance, m_summonableLayer))
