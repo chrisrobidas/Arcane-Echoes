@@ -1,6 +1,6 @@
 # Arcane Echoes: Scroll of Destiny
 
-Adventure game in which you must obtain a magical scroll protected by corrupted souls in order to leave an alternate dimension. Made for the Ludum Dare 55 game jam.
+Adventure game in which you must obtain a magical scroll protected by corrupted souls in order to leave an alternate dimension. Made in 72 hours for the Ludum Dare 55 game jam.
 
 This game was made using Unity 2022.3.24f1
 
